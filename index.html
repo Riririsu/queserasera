@@ -1,0 +1,590 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- ============================================================
+     このサイトは正式納品サイトではありません。
+     RIKKUN WEB STUDIO が店舗へ提案するための営業用デモサイトです。
+     実店舗の検索結果と競合しないよう noindex を指定しています。
+     ============================================================ -->
+<meta name="robots" content="noindex, nofollow">
+
+<title>燻製塩焼鳥 けむり｜霧島市国分の焼鳥テイクアウト</title>
+<meta name="description" content="鹿児島県霧島市国分中央の焼鳥テイクアウト専門店「燻製塩焼鳥 けむり」。燻製塩で味わう、焼きたて焼鳥。17:00 OPEN／22:00 CLOSE、売切れ次第CLOSE、火・水休み。ご注文はお電話で。">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="燻製塩焼鳥 けむり｜霧島市国分の焼鳥テイクアウト">
+<meta property="og:description" content="燻製塩で味わう、焼きたて焼鳥。17:00 OPEN／売切れ次第CLOSE。ご注文はお電話で。">
+<meta property="og:image" content="assets/img/ogp.svg">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#0b1220">
+
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body>
+<a class="skip-link" href="#main">本文へスキップ</a>
+
+<!-- 店舗サインを模した縦書きレール（デスクトップのみ／装飾） -->
+<div class="signrail" aria-hidden="true">
+  <p class="signrail__text"><span class="signrail__char">燻</span><span class="signrail__char">製</span><span class="signrail__char">塩</span><span class="signrail__char">焼</span><span class="signrail__char">鳥</span><span class="signrail__gap"></span><span class="signrail__char">け</span><span class="signrail__char">む</span><span class="signrail__char">り</span></p>
+</div>
+
+<!-- スクロール後に現れる細いバー（PC） -->
+<header class="topbar" data-topbar>
+  <p class="topbar__name">燻製塩焼鳥 けむり</p>
+  <a class="topbar__tel" href="tel:09044731867">
+    <span class="topbar__tel-label">電話で注文する</span>
+    <span class="topbar__tel-num">090-4473-1867</span>
+  </a>
+</header>
+
+<main id="main">
+
+<!-- ============================================================
+     01 HERO
+     ============================================================ -->
+<section class="hero" aria-labelledby="hero-title">
+  <div class="hero__inner">
+
+    <figure class="hero__figure">
+      <img src="assets/img/placeholder-storefront.svg"
+           width="1200" height="900"
+           alt="PLACEHOLDER：燻製塩焼鳥 けむり の店舗外観写真（差し替え予定）">
+      <figcaption class="ph-note">PHOTO PLACEHOLDER ／ 店舗外観</figcaption>
+    </figure>
+
+    <div class="hero__body">
+      <p class="hero__eyebrow">鹿児島県霧島市国分中央　焼鳥テイクアウト専門店</p>
+
+      <h1 class="hero__title" id="hero-title">燻製塩焼鳥 けむり</h1>
+
+      <p class="hero__lead">燻製塩で味わう、焼きたて焼鳥。</p>
+
+      <dl class="hours hours--hero">
+        <div class="hours__row">
+          <dt class="hours__time">17:00</dt>
+          <dd class="hours__state">OPEN</dd>
+        </div>
+        <div class="hours__row">
+          <dt class="hours__time">22:00</dt>
+          <dd class="hours__state">CLOSE</dd>
+        </div>
+      </dl>
+
+      <p class="soldout">売切れ次第CLOSE</p>
+
+      <a class="btn btn--primary" href="tel:09044731867" data-cta="hero">
+        <span class="btn__label">電話で注文する</span>
+        <span class="btn__sub">090-4473-1867</span>
+      </a>
+
+      <p class="hero__closed">火・水休み</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============================================================
+     02 TODAY / QUICK INFO
+     ============================================================ -->
+<section class="section section--today" aria-labelledby="today-title">
+  <div class="container">
+
+    <p class="section__index">02</p>
+    <h2 class="section__title en" id="today-title">TODAY</h2>
+
+    <div class="today">
+      <!-- 定休日（火・水）と営業時間のみから算出。JS無効時は静的表示のまま -->
+      <p class="today__date" data-today-date></p>
+      <p class="today__state" data-today-state></p>
+
+      <dl class="hours hours--today">
+        <div class="hours__row">
+          <dt class="hours__time">17:00</dt>
+          <dd class="hours__state">OPEN</dd>
+        </div>
+        <div class="hours__row">
+          <dt class="hours__time">22:00</dt>
+          <dd class="hours__state">CLOSE</dd>
+        </div>
+      </dl>
+
+      <p class="soldout soldout--lg">売切れ次第CLOSE</p>
+
+      <p class="today__rec">確実に受け取りたい方は<br class="br-sp">事前予約がおすすめです</p>
+
+      <a class="btn btn--primary" href="tel:09044731867" data-cta="today">
+        <span class="btn__label">電話で注文する</span>
+        <span class="btn__sub">090-4473-1867</span>
+      </a>
+
+      <p class="today__note">
+        売切れ次第CLOSEのため、当日の在庫状況は
+        <a href="https://www.instagram.com/yakitori.kemuri/" target="_blank" rel="noopener">公式Instagram</a>
+        または お電話でご確認ください。
+      </p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============================================================
+     03 KEMURI'S FEATURE
+     ============================================================ -->
+<section class="section section--feature" aria-labelledby="feature-title">
+  <div class="container">
+
+    <p class="section__index">03</p>
+    <h2 class="section__title" id="feature-title">けむりの焼鳥は、燻製塩。</h2>
+
+    <div class="feature">
+      <figure class="feature__figure">
+        <img src="assets/img/placeholder-yakitori.svg"
+             width="1000" height="1000" loading="lazy"
+             alt="PLACEHOLDER：焼き台の焼鳥のアップ写真（差し替え予定）">
+        <figcaption class="ph-note">PHOTO PLACEHOLDER ／ 焼鳥アップ</figcaption>
+      </figure>
+
+      <div class="feature__body">
+        <p class="feature__text">
+          けむりは、燻製塩を使った焼鳥のテイクアウト専門店です。
+        </p>
+        <p class="feature__text">
+          注文を受けてから焼くため、お渡しするのはいつも焼きたて。
+          国分中央の一角で、2017年12月27日から焼き続けています。
+        </p>
+
+        <ul class="feature__facts">
+          <li class="feature__fact">
+            <span class="feature__fact-label en">SINCE</span>
+            <span class="feature__fact-value">2017.12.27</span>
+          </li>
+          <li class="feature__fact">
+            <span class="feature__fact-label en">STYLE</span>
+            <span class="feature__fact-value">テイクアウト専門</span>
+          </li>
+          <li class="feature__fact">
+            <span class="feature__fact-label en">TASTE</span>
+            <span class="feature__fact-value">燻製塩</span>
+          </li>
+        </ul>
+
+        <p class="confirm-note">
+          <span class="confirm-note__tag">TO CONFIRM</span>
+          燻製塩の製法・使用素材・味の詳細は未確認のため記載していません。
+          店舗ヒアリング後に追記予定。
+        </p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============================================================
+     04 MENU
+     ============================================================ -->
+<section class="section section--menu" aria-labelledby="menu-title">
+  <div class="container">
+
+    <p class="section__index">04</p>
+    <h2 class="section__title" id="menu-title">お品書き</h2>
+    <p class="section__sub">通常メニュー</p>
+
+    <div class="shinagaki">
+      <p class="shinagaki__group en">YAKITORI</p>
+
+      <ul class="shinagaki__list">
+        <li class="shinagaki__item">
+          <span class="shinagaki__name">もも</span>
+          <span class="shinagaki__leader" aria-hidden="true"></span>
+          <span class="shinagaki__price">PRICE TO CONFIRM</span>
+        </li>
+        <li class="shinagaki__item">
+          <span class="shinagaki__name">豚バラ</span>
+          <span class="shinagaki__leader" aria-hidden="true"></span>
+          <span class="shinagaki__price">PRICE TO CONFIRM</span>
+        </li>
+        <li class="shinagaki__item">
+          <span class="shinagaki__name">ねぎま</span>
+          <span class="shinagaki__leader" aria-hidden="true"></span>
+          <span class="shinagaki__price">PRICE TO CONFIRM</span>
+        </li>
+        <li class="shinagaki__item">
+          <span class="shinagaki__name">つくね</span>
+          <span class="shinagaki__leader" aria-hidden="true"></span>
+          <span class="shinagaki__price">PRICE TO CONFIRM</span>
+        </li>
+        <li class="shinagaki__item">
+          <span class="shinagaki__name">レバー</span>
+          <span class="shinagaki__leader" aria-hidden="true"></span>
+          <span class="shinagaki__price">PRICE TO CONFIRM</span>
+        </li>
+        <li class="shinagaki__item">
+          <span class="shinagaki__name">砂ずり</span>
+          <span class="shinagaki__leader" aria-hidden="true"></span>
+          <span class="shinagaki__price">PRICE TO CONFIRM</span>
+        </li>
+        <li class="shinagaki__item">
+          <span class="shinagaki__name">スモークチーズ</span>
+          <span class="shinagaki__leader" aria-hidden="true"></span>
+          <span class="shinagaki__price">PRICE TO CONFIRM</span>
+        </li>
+      </ul>
+    </div>
+
+    <p class="confirm-note">
+      <span class="confirm-note__tag">TO CONFIRM</span>
+      価格・メニューの全ラインナップは未確認です。
+      上記は公開情報から確認できた商品のみを掲載しています。
+    </p>
+
+    <p class="menu__daily-link">
+      日替わりメニューは
+      <a href="#instagram">こちら</a>
+    </p>
+
+  </div>
+</section>
+
+<!-- ============================================================
+     05 DAILY MENU / INSTAGRAM
+     ============================================================ -->
+<section class="section section--daily" aria-labelledby="daily-title">
+  <div class="container">
+
+    <p class="section__index">05</p>
+    <h2 class="section__title" id="daily-title">今日の焼鳥をチェック</h2>
+
+    <div class="daily">
+      <p class="daily__text">
+        日替わりメニューは、公式Instagramで毎日発信されています。
+      </p>
+      <p class="daily__handle en">@yakitori.kemuri</p>
+
+      <a class="btn btn--ig"
+         href="https://www.instagram.com/yakitori.kemuri/"
+         target="_blank" rel="noopener" data-cta="daily">
+        <span class="btn__label">Instagramを見る</span>
+      </a>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============================================================
+     06 RESERVATION
+     ============================================================ -->
+<section class="section section--reserve" aria-labelledby="reserve-title">
+  <div class="container">
+
+    <p class="section__index">06</p>
+    <h2 class="section__title" id="reserve-title">確実に受け取りたいなら、<br>事前にお電話ください。</h2>
+
+    <ol class="steps">
+      <li class="steps__item">
+        <span class="steps__num en">01</span>
+        <span class="steps__label">電話する</span>
+      </li>
+      <li class="steps__item">
+        <span class="steps__num en">02</span>
+        <span class="steps__label">注文内容・受け取り時間を伝える</span>
+      </li>
+      <li class="steps__item">
+        <span class="steps__num en">03</span>
+        <span class="steps__label">焼き上がりに合わせて来店</span>
+      </li>
+      <li class="steps__item">
+        <span class="steps__num en">04</span>
+        <span class="steps__label">受け取る</span>
+      </li>
+    </ol>
+
+    <a class="btn btn--primary" href="tel:09044731867" data-cta="reserve">
+      <span class="btn__label">電話で注文する</span>
+      <span class="btn__sub">090-4473-1867</span>
+    </a>
+
+    <div class="notice">
+      <p class="notice__title">当日のDM注文について</p>
+      <p class="notice__text">
+        当日のDM注文は、行き違い防止のためお受けしていません。
+        ご注文はお電話でお願いいたします。
+      </p>
+    </div>
+
+    <p class="confirm-note">
+      <span class="confirm-note__tag">TO CONFIRM</span>
+      「何分前まで」などの具体的な予約ルールは未確認です。
+      詳しい予約方法はお電話でご確認ください。
+    </p>
+
+  </div>
+</section>
+
+<!-- ============================================================
+     07 PICKUP / WAITING
+     ============================================================ -->
+<section class="section section--pickup" aria-labelledby="pickup-title">
+  <div class="container">
+
+    <p class="section__index">07</p>
+    <h2 class="section__title" id="pickup-title">焼きたてを、お渡しするために。</h2>
+
+    <p class="pickup__text">
+      焼きたてをお渡しするため、<br class="br-sp">
+      ご注文後にお時間をいただく場合があります。
+    </p>
+    <p class="pickup__sub">
+      事前にお電話いただければ、受け取り時間に合わせてご用意します。
+    </p>
+
+    <p class="confirm-note">
+      <span class="confirm-note__tag">TO CONFIRM</span>
+      具体的な待ち時間の目安は未確認のため記載していません。
+    </p>
+
+  </div>
+</section>
+
+<!-- ============================================================
+     08 ACCESS
+     ============================================================ -->
+<section class="section section--access" aria-labelledby="access-title">
+  <div class="container">
+
+    <p class="section__index">08</p>
+    <h2 class="section__title" id="access-title">お店の場所</h2>
+
+    <div class="access">
+      <figure class="access__figure">
+        <img src="assets/img/placeholder-exterior.svg"
+             width="1200" height="800" loading="lazy"
+             alt="PLACEHOLDER：入口と受け取り場所が分かる店舗外観写真（差し替え予定）">
+        <figcaption class="ph-note">PHOTO PLACEHOLDER ／ 入口・受け取り位置が分かる外観</figcaption>
+      </figure>
+
+      <div class="access__body">
+        <dl class="access__list">
+          <div class="access__row">
+            <dt class="access__label">住所</dt>
+            <dd class="access__value">鹿児島県霧島市国分中央3-6-18</dd>
+          </div>
+          <div class="access__row">
+            <dt class="access__label">電話</dt>
+            <dd class="access__value"><a href="tel:09044731867">090-4473-1867</a></dd>
+          </div>
+          <div class="access__row">
+            <dt class="access__label">営業時間</dt>
+            <dd class="access__value">17:00〜22:00<br><span class="soldout-inline">売切れ次第CLOSE</span></dd>
+          </div>
+          <div class="access__row">
+            <dt class="access__label">定休日</dt>
+            <dd class="access__value">火・水</dd>
+          </div>
+          <div class="access__row">
+            <dt class="access__label">駐車</dt>
+            <dd class="access__value">駐車はお店の前にお願いします</dd>
+          </div>
+        </dl>
+
+        <a class="btn btn--ghost"
+           href="https://www.google.com/maps/search/?api=1&query=%E9%B9%BF%E5%85%90%E5%B3%B6%E7%9C%8C%E9%9C%A7%E5%B3%B6%E5%B8%82%E5%9B%BD%E5%88%86%E4%B8%AD%E5%A4%AE3-6-18"
+           target="_blank" rel="noopener" data-cta="map">
+          <span class="btn__label">Google Mapsで見る</span>
+        </a>
+
+        <p class="confirm-note">
+          <span class="confirm-note__tag">TO CONFIRM</span>
+          駐車可能台数は未確認です。台数の記載は行っていません。
+        </p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============================================================
+     09 FAQ
+     ============================================================ -->
+<section class="section section--faq" aria-labelledby="faq-title">
+  <div class="container">
+
+    <p class="section__index">09</p>
+    <h2 class="section__title" id="faq-title">よくあるご質問</h2>
+
+    <div class="faq">
+
+      <details class="faq__item">
+        <summary class="faq__q">当日のDM注文はできますか？</summary>
+        <div class="faq__a">
+          <p>
+            当日のDM注文はお受けしていません。
+            行き違い防止のため、ご注文はお電話でお願いいたします。
+          </p>
+        </div>
+      </details>
+
+      <details class="faq__item">
+        <summary class="faq__q">予約なしでも購入できますか？</summary>
+        <div class="faq__a">
+          <p class="confirm-note confirm-note--inline">
+            <span class="confirm-note__tag">TO CONFIRM</span>
+            店舗確認後に回答を記載します。
+          </p>
+        </div>
+      </details>
+
+      <details class="faq__item">
+        <summary class="faq__q">営業時間は？</summary>
+        <div class="faq__a">
+          <p>17:00〜22:00（売切れ次第CLOSE）</p>
+          <p>定休日は火曜・水曜です。</p>
+        </div>
+      </details>
+
+      <details class="faq__item">
+        <summary class="faq__q">焼き上がりまでどのくらいかかりますか？</summary>
+        <div class="faq__a">
+          <p>
+            ご注文状況によって異なります。
+            具体的なお時間はお電話で店舗へご確認ください。
+          </p>
+        </div>
+      </details>
+
+      <details class="faq__item">
+        <summary class="faq__q">駐車場はありますか？</summary>
+        <div class="faq__a">
+          <p>駐車はお店の前にお願いします、とのご案内があります。</p>
+          <p class="confirm-note confirm-note--inline">
+            <span class="confirm-note__tag">TO CONFIRM</span>
+            駐車可能台数など詳細は要確認です。
+          </p>
+        </div>
+      </details>
+
+    </div>
+
+  </div>
+</section>
+
+<!-- ============================================================
+     10 INSTAGRAM
+     ============================================================ -->
+<section class="section section--instagram" id="instagram" aria-labelledby="ig-title">
+  <div class="container">
+
+    <p class="section__index">10</p>
+    <h2 class="section__title" id="ig-title">最新情報は、Instagramで。</h2>
+    <p class="section__sub">日替わりメニュー・臨時のお知らせは公式Instagramで発信されています。</p>
+
+    <ul class="iggrid" aria-label="Instagram投稿のプレースホルダー">
+      <li class="iggrid__cell"><span class="ph-note ph-note--cell">POST<br>PLACEHOLDER</span></li>
+      <li class="iggrid__cell"><span class="ph-note ph-note--cell">POST<br>PLACEHOLDER</span></li>
+      <li class="iggrid__cell"><span class="ph-note ph-note--cell">POST<br>PLACEHOLDER</span></li>
+      <li class="iggrid__cell"><span class="ph-note ph-note--cell">POST<br>PLACEHOLDER</span></li>
+      <li class="iggrid__cell"><span class="ph-note ph-note--cell">POST<br>PLACEHOLDER</span></li>
+      <li class="iggrid__cell"><span class="ph-note ph-note--cell">POST<br>PLACEHOLDER</span></li>
+    </ul>
+
+    <p class="ig__handle en">@yakitori.kemuri</p>
+
+    <a class="btn btn--ig"
+       href="https://www.instagram.com/yakitori.kemuri/"
+       target="_blank" rel="noopener" data-cta="instagram">
+      <span class="btn__label">Instagramを見る</span>
+    </a>
+
+    <p class="confirm-note">
+      <span class="confirm-note__tag">PLACEHOLDER</span>
+      本番実装では公式Instagramの最新投稿を自動表示します（店舗側の更新作業は発生しません）。
+    </p>
+
+  </div>
+</section>
+
+<!-- ============================================================
+     11 FINAL CTA
+     ============================================================ -->
+<section class="finalcta" aria-labelledby="final-title">
+  <div class="container">
+
+    <h2 class="finalcta__title" id="final-title">今日、焼鳥を買うなら。</h2>
+
+    <dl class="hours hours--final">
+      <div class="hours__row">
+        <dt class="hours__time">17:00</dt>
+        <dd class="hours__state">OPEN</dd>
+      </div>
+    </dl>
+    <p class="soldout soldout--lg">売切れ次第CLOSE</p>
+
+    <a class="btn btn--primary btn--lg" href="tel:09044731867" data-cta="final">
+      <span class="btn__label">電話で注文する</span>
+      <span class="btn__sub">090-4473-1867</span>
+    </a>
+
+    <p class="finalcta__closed">火・水休み</p>
+
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <p class="footer__name">燻製塩焼鳥 けむり</p>
+    <p class="footer__addr">鹿児島県霧島市国分中央3-6-18</p>
+    <p class="footer__tel"><a href="tel:09044731867">090-4473-1867</a></p>
+    <p class="footer__ig">
+      <a href="https://www.instagram.com/yakitori.kemuri/" target="_blank" rel="noopener">@yakitori.kemuri</a>
+    </p>
+
+    <p class="footer__demo">
+      本サイトは <strong>RIKKUN WEB STUDIO</strong> が制作した<strong>営業提案用デモ</strong>です。
+      正式な公式サイトではありません。掲載内容には未確認項目（TO CONFIRM）が含まれます。
+    </p>
+  </div>
+</footer>
+
+<!-- モバイル固定CTA -->
+<div class="stickycta" data-stickycta>
+  <a class="stickycta__btn" href="tel:09044731867" data-cta="sticky">
+    <span class="stickycta__label">電話で注文する</span>
+    <span class="stickycta__num en">090-4473-1867</span>
+  </a>
+</div>
+
+<!-- 構造化データ：公開情報から確認できる項目のみ記載。価格・メニューは未確認のため含めない -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FoodEstablishment",
+  "name": "燻製塩焼鳥 けむり",
+  "servesCuisine": "焼鳥",
+  "telephone": "+81-90-4473-1867",
+  "address": {
+    "@type": "PostalAddress",
+    "addressCountry": "JP",
+    "addressRegion": "鹿児島県",
+    "addressLocality": "霧島市",
+    "streetAddress": "国分中央3-6-18"
+  },
+  "sameAs": ["https://www.instagram.com/yakitori.kemuri/"],
+  "openingHoursSpecification": [{
+    "@type": "OpeningHoursSpecification",
+    "dayOfWeek": ["Monday", "Thursday", "Friday", "Saturday", "Sunday"],
+    "opens": "17:00",
+    "closes": "22:00"
+  }]
+}
+</script>
+
+<script src="assets/js/main.js" defer></script>
+</body>
+</html>

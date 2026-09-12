@@ -1,0 +1,460 @@
+@charset "UTF-8";
+/* ============================================================
+   燻製塩焼鳥 けむり ／ 営業提案用デモLP
+   Visual DNA（確認済み情報のみ）:
+     ・濃紺〜ネイビーの外壁  → ベースカラー
+     ・白い店舗サイン        → 見出し・サイン表現
+     ・赤                    → CTA・アクセント
+   ※ Visual DNA / Motion / Responsive の詳細指示はブリーフ未受領のため
+     上記3点のみを根拠に構築しています（TO CONFIRM）
+   ============================================================ */
+
+/* ---------- 1. TOKENS ---------- */
+:root{
+  --navy-900:#0a1120;
+  --navy-850:#0d1728;
+  --navy-800:#111d33;
+  --navy-700:#1a2942;
+
+  --white:#f6f3ec;          /* 店舗サインの白（やや暖色） */
+  --white-70:rgba(246,243,236,.72);
+  --white-50:rgba(246,243,236,.52);
+  --white-30:rgba(246,243,236,.30);
+  --line:rgba(246,243,236,.14);
+
+  --red:#cf3a2d;
+  --red-deep:#a82a1e;
+  --red-soft:rgba(207,58,45,.14);
+
+  --serif:"Hiragino Mincho ProN","Yu Mincho",YuMincho,"Noto Serif JP","Times New Roman",serif;
+  --sans:"Hiragino Sans","Yu Gothic",YuGothic,"Noto Sans JP",system-ui,-apple-system,sans-serif;
+  --en:"Helvetica Neue",Helvetica,Arial,sans-serif;
+
+  --rail:0px;
+  --gut:clamp(20px,5vw,32px);
+  --maxw:1060px;
+}
+
+/* ---------- 2. RESET ---------- */
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{
+  margin:0;
+  background:var(--navy-900);
+  color:var(--white);
+  font-family:var(--sans);
+  font-size:16px;
+  line-height:1.9;
+  letter-spacing:.02em;
+  padding-left:var(--rail);
+  overflow-x:hidden;
+}
+img{max-width:100%;height:auto;display:block}
+ul,ol,dl,dd{margin:0;padding:0}
+li{list-style:none}
+h1,h2,h3,p{margin:0}
+a{color:inherit}
+.en{font-family:var(--en);font-feature-settings:"tnum"}
+.container{max-width:var(--maxw);margin-inline:auto;padding-inline:var(--gut)}
+.br-sp{display:inline}
+
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+}
+
+/* ---------- 3. A11Y ---------- */
+.skip-link{
+  position:absolute;left:-9999px;top:0;z-index:200;
+  background:var(--red);color:#fff;padding:12px 20px;font-size:14px;
+}
+.skip-link:focus{left:0}
+:focus-visible{outline:2px solid var(--red);outline-offset:3px}
+
+/* ---------- 4. 縦書きサインレール（装飾／PCのみ） ---------- */
+.signrail{display:none}
+@media (min-width:1180px){
+  :root{--rail:58px}
+  .signrail{
+    display:block;position:fixed;inset:0 auto 0 0;width:58px;z-index:40;
+    background:var(--navy-850);
+    border-right:1px solid var(--line);
+  }
+  /* 縦書きは writing-mode ではなく1文字=1ブロックで構成。
+     端末側フォントの縦組みメトリクスに依存せず、どの環境でも同じ字送りになる。 */
+  .signrail__text{
+    position:absolute;top:34px;left:0;right:0;
+    text-align:center;
+    font-family:var(--serif);font-size:17px;
+    color:var(--white);
+  }
+  .signrail__char{display:block;line-height:1.58}
+  .signrail__gap{display:block;height:.72em}
+  .signrail::after{
+    content:"";position:absolute;left:50%;bottom:34px;
+    width:1px;height:96px;margin-left:-.5px;
+    background:linear-gradient(var(--white-30),transparent);
+  }
+}
+
+/* ---------- 5. TOPBAR ---------- */
+.topbar{
+  position:fixed;top:0;left:var(--rail);right:0;z-index:50;
+  display:none;align-items:center;justify-content:space-between;
+  gap:20px;padding:10px clamp(20px,4vw,32px);
+  background:rgba(10,17,32,.92);
+  border-bottom:1px solid var(--line);
+  transform:translateY(-101%);
+  transition:transform .4s cubic-bezier(.2,.7,.3,1);
+}
+.topbar.is-visible{transform:none}
+.topbar__name{font-family:var(--serif);font-size:16px;letter-spacing:.18em}
+.topbar__tel{
+  display:flex;align-items:baseline;gap:12px;
+  text-decoration:none;background:var(--red);
+  padding:8px 20px;border-radius:2px;
+}
+.topbar__tel-label{font-size:13px;font-weight:700;letter-spacing:.08em}
+.topbar__tel-num{font-family:var(--en);font-size:14px;letter-spacing:.06em}
+@media (min-width:768px){.topbar{display:flex}}
+
+/* ---------- 6. BUTTONS ---------- */
+.btn{
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:2px;width:100%;max-width:420px;min-height:68px;
+  padding:14px 24px;border-radius:2px;text-decoration:none;
+  transition:transform .25s ease,background-color .25s ease,border-color .25s ease;
+}
+.btn__label{font-size:17px;font-weight:700;letter-spacing:.1em}
+.btn__sub{font-family:var(--en);font-size:14px;letter-spacing:.1em;opacity:.85}
+
+.btn--primary{
+  background:var(--red);color:#fff;
+  box-shadow:0 10px 30px -14px rgba(207,58,45,.9);
+}
+.btn--primary::before{
+  content:"";width:15px;height:15px;margin-bottom:2px;
+  background:currentColor;
+  -webkit-mask:var(--tel-icon) center/contain no-repeat;
+          mask:var(--tel-icon) center/contain no-repeat;
+}
+:root{
+  --tel-icon:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.2.4 2.4.6 3.7.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.7.1.3 0 .7-.2 1l-2.3 2.1z'/%3E%3C/svg%3E");
+}
+.btn--lg{min-height:80px}
+.btn--ghost{border:1px solid var(--white-30);color:var(--white);background:transparent}
+.btn--ig{border:1px solid var(--white-30);color:var(--white);background:transparent}
+.btn--ig .btn__label{font-size:16px}
+@media (hover:hover){
+  .btn--primary:hover{background:var(--red-deep);transform:translateY(-2px)}
+  .btn--ghost:hover,.btn--ig:hover{border-color:var(--white);background:rgba(246,243,236,.06)}
+}
+
+/* ---------- 7. 共通パーツ ---------- */
+.section{padding-block:clamp(64px,11vw,104px);border-top:1px solid var(--line)}
+.section__index{
+  font-family:var(--en);font-size:12px;letter-spacing:.34em;
+  color:var(--red);margin-bottom:14px;
+}
+.section__title{
+  font-family:var(--serif);font-weight:400;
+  font-size:clamp(24px,6.2vw,36px);line-height:1.55;letter-spacing:.06em;
+  margin-bottom:10px;
+}
+.section__title.en{letter-spacing:.3em;font-size:clamp(22px,5.5vw,30px)}
+.section__sub{font-size:14px;color:var(--white-50);margin-bottom:28px}
+
+/* OPEN / CLOSE 表示 */
+.hours{display:flex;gap:22px;flex-wrap:wrap;margin-block:22px}
+.hours__row{display:flex;align-items:baseline;gap:9px}
+.hours__time{font-family:var(--en);font-size:clamp(28px,8vw,40px);line-height:1;letter-spacing:.02em}
+.hours__state{
+  font-family:var(--en);font-size:12px;letter-spacing:.24em;
+  color:var(--white-50);padding-bottom:3px;
+}
+.hours--hero,.hours--today{margin-block:20px 12px}
+.hours--final{justify-content:center}
+
+.soldout{
+  display:inline-block;font-size:13px;letter-spacing:.14em;
+  color:var(--red);border-bottom:1px solid var(--red-soft);padding-bottom:3px;
+}
+.soldout--lg{font-size:14px}
+.soldout-inline{color:var(--red);font-size:13px}
+
+/* PLACEHOLDER / TO CONFIRM 表示 */
+.ph-note{
+  font-family:var(--en);font-size:10px;letter-spacing:.22em;
+  color:var(--white-30);margin-top:8px;text-align:left;
+}
+.ph-note--cell{
+  position:absolute;inset:auto;top:50%;left:50%;transform:translate(-50%,-50%);
+  text-align:center;line-height:1.7;margin:0;
+}
+.confirm-note{
+  display:block;margin-top:26px;padding:12px 14px;
+  border:1px dashed var(--white-30);border-radius:2px;
+  font-size:12.5px;line-height:1.85;color:var(--white-50);
+}
+.confirm-note--inline{margin-top:12px}
+.confirm-note__tag{
+  display:inline-block;margin-right:8px;padding:1px 7px;
+  font-family:var(--en);font-size:10px;letter-spacing:.16em;
+  color:var(--navy-900);background:var(--white-50);border-radius:2px;
+  vertical-align:1px;
+}
+
+/* ---------- 8. HERO（画面いっぱいにしない／写真と文字を重ねない） ---------- */
+.hero{padding-block:clamp(28px,7vw,56px) clamp(48px,9vw,72px)}
+.hero__inner{max-width:var(--maxw);margin-inline:auto;padding-inline:var(--gut)}
+.hero__figure{
+  margin:0 0 clamp(28px,6vw,40px);
+  border:1px solid var(--line);background:var(--navy-850);
+}
+.hero__figure img{width:100%;aspect-ratio:4/3;object-fit:cover}
+.hero__figure .ph-note{padding:0 10px 8px}
+.hero__eyebrow{font-size:12px;letter-spacing:.2em;color:var(--white-50);margin-bottom:16px}
+.hero__title{
+  font-family:var(--serif);font-weight:400;
+  font-size:clamp(32px,9.5vw,48px);line-height:1.35;letter-spacing:.1em;
+  word-break:keep-all;
+}
+.hero__lead{
+  font-family:var(--serif);font-size:clamp(15px,4.3vw,19px);
+  letter-spacing:.08em;color:var(--white-70);margin-top:14px;
+  padding-left:14px;border-left:2px solid var(--red);
+}
+.hero__closed{font-size:12px;letter-spacing:.14em;color:var(--white-50);margin-top:16px}
+
+@media (min-width:880px){
+  .hero__inner{
+    display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(32px,5vw,56px);
+    align-items:center;
+  }
+  .hero__figure{margin-bottom:0}
+}
+
+/* ---------- 9. TODAY ---------- */
+.section--today{background:var(--navy-850)}
+.today__date{font-family:var(--en);font-size:13px;letter-spacing:.2em;color:var(--white-50)}
+.today__date:empty{display:none}
+.today__state{
+  font-family:var(--serif);font-size:clamp(18px,5vw,22px);
+  letter-spacing:.08em;margin-top:6px;
+}
+.today__state:empty{display:none}
+.today__state[data-open="false"]{color:var(--red)}
+.today__rec{
+  margin:26px 0 24px;padding:18px 20px;
+  background:var(--navy-800);border-left:3px solid var(--red);
+  font-size:15px;line-height:1.85;
+}
+.today__note{margin-top:18px;font-size:12.5px;line-height:1.85;color:var(--white-50)}
+.today__note a{color:var(--white-70)}
+
+/* ---------- 10. FEATURE ---------- */
+.feature__figure{margin:0 0 28px;border:1px solid var(--line);background:var(--navy-850)}
+.feature__figure img{width:100%;aspect-ratio:1/1;object-fit:cover}
+.feature__figure .ph-note{padding:0 10px 8px}
+.feature__text{margin-bottom:18px;color:var(--white-70);line-height:2.05}
+.feature__facts{
+  display:flex;flex-wrap:wrap;gap:10px 34px;
+  margin-top:26px;padding-top:22px;border-top:1px solid var(--line);
+}
+.feature__fact{display:flex;flex-direction:column;gap:4px}
+.feature__fact-label{font-size:10px;letter-spacing:.24em;color:var(--red)}
+.feature__fact-value{font-size:14px;letter-spacing:.06em}
+@media (min-width:880px){
+  .feature{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(32px,5vw,56px);align-items:start}
+  .feature__figure{margin-bottom:0}
+}
+
+/* ---------- 11. MENU（3カードではなく「お品書き」） ---------- */
+.section--menu{background:var(--navy-850)}
+.shinagaki{
+  margin-top:32px;padding:clamp(24px,6vw,40px) clamp(20px,5vw,36px);
+  background:var(--navy-900);border:1px solid var(--line);
+  position:relative;
+}
+.shinagaki::before,
+.shinagaki::after{
+  content:"";position:absolute;left:0;right:0;height:1px;background:var(--white-30);
+}
+.shinagaki::before{top:6px}
+.shinagaki::after{bottom:6px}
+.shinagaki__group{
+  font-size:11px;letter-spacing:.34em;color:var(--red);
+  padding-bottom:14px;margin-bottom:10px;border-bottom:1px solid var(--line);
+}
+.shinagaki__item{
+  display:flex;align-items:baseline;gap:.7em;
+  padding-block:15px;border-bottom:1px solid rgba(246,243,236,.07);
+}
+.shinagaki__item:last-child{border-bottom:0}
+.shinagaki__name{
+  font-family:var(--serif);font-size:clamp(17px,4.8vw,20px);letter-spacing:.14em;
+  flex:0 1 auto;min-width:0;
+}
+.shinagaki__leader{flex:1 1 auto;border-bottom:1px dotted var(--white-30);transform:translateY(-4px)}
+.shinagaki__price{
+  flex:0 0 auto;font-family:var(--en);font-size:10.5px;letter-spacing:.14em;
+  color:var(--white-30);
+}
+/* 狭い端末（〜360px）で「PRICE TO CONFIRM」が溢れないよう縮小 */
+@media (max-width:380px){
+  .shinagaki__price{font-size:9px;letter-spacing:.06em}
+  .shinagaki{padding-inline:16px}
+}
+.menu__daily-link{margin-top:24px;font-size:14px;color:var(--white-50)}
+.menu__daily-link a{color:var(--white)}
+
+/* ---------- 12. DAILY ---------- */
+.daily__text{color:var(--white-70);margin-bottom:18px}
+.daily__handle{
+  font-size:clamp(18px,5vw,24px);letter-spacing:.1em;
+  margin-bottom:26px;color:var(--white);
+}
+
+/* ---------- 13. RESERVATION（4ボックス横並びにしない／縦の導線） ---------- */
+.section--reserve{background:var(--navy-850)}
+.steps{position:relative;margin:34px 0 32px;padding-left:8px}
+.steps::before{
+  content:"";position:absolute;left:22px;top:14px;bottom:14px;width:1px;
+  background:linear-gradient(var(--red),var(--red-soft));
+}
+.steps__item{
+  position:relative;display:flex;align-items:center;gap:20px;
+  padding-block:16px;
+}
+.steps__num{
+  flex:0 0 auto;width:29px;height:29px;border-radius:50%;
+  display:grid;place-items:center;
+  background:var(--navy-900);border:1px solid var(--red);
+  font-size:11px;letter-spacing:.04em;color:var(--red);
+  position:relative;z-index:1;
+}
+.steps__label{font-size:clamp(15px,4.2vw,17px);letter-spacing:.06em}
+
+.notice{
+  margin-top:32px;padding:20px;
+  background:var(--red-soft);border:1px solid rgba(207,58,45,.4);border-radius:2px;
+}
+.notice__title{font-size:14px;font-weight:700;letter-spacing:.1em;margin-bottom:8px;color:var(--red)}
+.notice__text{font-size:14px;line-height:1.9;color:var(--white-70)}
+
+/* ---------- 14. PICKUP ---------- */
+.pickup__text{
+  font-family:var(--serif);font-size:clamp(16px,4.6vw,21px);
+  line-height:2;letter-spacing:.08em;margin-top:26px;
+}
+.pickup__sub{margin-top:18px;font-size:14px;color:var(--white-50);line-height:1.9}
+
+/* ---------- 15. ACCESS ---------- */
+.section--access{background:var(--navy-850)}
+.access__figure{margin:0 0 28px;border:1px solid var(--line);background:var(--navy-900)}
+.access__figure img{width:100%;aspect-ratio:3/2;object-fit:cover}
+.access__figure .ph-note{padding:0 10px 8px}
+.access__list{margin-bottom:26px}
+.access__row{
+  display:grid;grid-template-columns:74px 1fr;gap:14px;
+  padding-block:14px;border-bottom:1px solid var(--line);
+}
+.access__label{font-size:12px;letter-spacing:.16em;color:var(--white-50);padding-top:4px}
+.access__value{font-size:15px;line-height:1.8}
+.access__value a{color:var(--white)}
+@media (min-width:880px){
+  .access{display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,5vw,56px);align-items:start}
+  .access__figure{margin-bottom:0}
+}
+
+/* ---------- 16. FAQ ---------- */
+.faq{margin-top:30px;border-top:1px solid var(--line)}
+.faq__item{border-bottom:1px solid var(--line)}
+.faq__q{
+  position:relative;display:block;cursor:pointer;list-style:none;
+  padding:20px 44px 20px 0;
+  font-size:15.5px;line-height:1.8;letter-spacing:.04em;
+}
+.faq__q::-webkit-details-marker{display:none}
+.faq__q::after{
+  content:"";position:absolute;right:6px;top:28px;
+  width:13px;height:13px;
+  background:
+    linear-gradient(var(--red),var(--red)) center/13px 1px no-repeat,
+    linear-gradient(var(--red),var(--red)) center/1px 13px no-repeat;
+  transition:transform .3s ease;
+}
+.faq__item[open] .faq__q::after{transform:rotate(90deg);background-size:13px 1px,0 0}
+.faq__a{padding:0 0 22px;font-size:14px;line-height:1.95;color:var(--white-70)}
+.faq__a p+p{margin-top:10px}
+
+/* ---------- 17. INSTAGRAM ---------- */
+.section--instagram{background:var(--navy-850)}
+.iggrid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:6px;
+  margin:30px 0 26px;
+}
+.iggrid__cell{
+  position:relative;aspect-ratio:1/1;
+  background:var(--navy-800);border:1px solid var(--line);
+}
+.ig__handle{font-size:clamp(16px,4.5vw,20px);letter-spacing:.1em;margin-bottom:22px}
+
+/* ---------- 18. FINAL CTA ---------- */
+.finalcta{
+  padding-block:clamp(72px,13vw,112px);
+  text-align:center;
+  background:
+    radial-gradient(120% 90% at 50% 0%,rgba(207,58,45,.18),transparent 62%),
+    var(--navy-900);
+  border-top:1px solid var(--line);
+}
+.finalcta__title{
+  font-family:var(--serif);font-weight:400;
+  font-size:clamp(25px,7.4vw,42px);line-height:1.5;letter-spacing:.09em;
+  margin-bottom:8px;
+}
+.finalcta .btn{margin-inline:auto;margin-top:30px}
+.finalcta .soldout{margin-top:4px}
+.finalcta__closed{margin-top:18px;font-size:12px;letter-spacing:.14em;color:var(--white-50)}
+
+/* ---------- 19. FOOTER ---------- */
+.footer{
+  padding-block:clamp(44px,8vw,64px) calc(clamp(44px,8vw,64px) + var(--sticky-pad,0px));
+  border-top:1px solid var(--line);background:var(--navy-850);
+}
+.footer__name{font-family:var(--serif);font-size:19px;letter-spacing:.18em;margin-bottom:14px}
+.footer__addr,.footer__tel,.footer__ig{font-size:13.5px;color:var(--white-50);line-height:2}
+.footer__tel a,.footer__ig a{color:var(--white-70)}
+.footer__demo{
+  margin-top:28px;padding-top:20px;border-top:1px solid var(--line);
+  font-size:11.5px;line-height:1.9;color:var(--white-30);
+}
+.footer__demo strong{color:var(--white-50);font-weight:700}
+
+/* ---------- 20. STICKY CTA（SPのみ） ---------- */
+.stickycta{
+  position:fixed;left:0;right:0;bottom:0;z-index:60;
+  padding:10px 14px calc(10px + env(safe-area-inset-bottom));
+  background:rgba(10,17,32,.94);
+  border-top:1px solid var(--line);
+  transform:translateY(120%);
+  transition:transform .4s cubic-bezier(.2,.7,.3,1);
+}
+.stickycta.is-visible{transform:none}
+.stickycta__btn{
+  display:flex;align-items:center;justify-content:center;gap:14px;
+  min-height:56px;background:var(--red);color:#fff;
+  text-decoration:none;border-radius:2px;
+}
+.stickycta__label{font-size:16px;font-weight:700;letter-spacing:.1em}
+.stickycta__num{font-size:13px;letter-spacing:.08em;opacity:.85}
+@media (min-width:768px){.stickycta{display:none}}
+@media (max-width:767px){:root{--sticky-pad:84px}}
+
+/* ---------- 21. MOTION（控えめ／reduced-motion尊重） ---------- */
+.reveal{opacity:0;transform:translateY(18px)}
+.reveal.is-in{opacity:1;transform:none;transition:opacity .7s ease,transform .7s cubic-bezier(.2,.7,.3,1)}
+@media (prefers-reduced-motion:reduce){
+  .reveal,.reveal.is-in{opacity:1;transform:none;transition:none}
+  .topbar,.stickycta{transition:none}
+}
