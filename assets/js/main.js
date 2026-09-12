@@ -18,71 +18,98 @@
     var stateEl = document.querySelector('[data-today-state]');
     if (!dateEl || !stateEl) return;
 
-    var now = new Date();
     var parts = {};
     try {
       new Intl.DateTimeFormat('en-US', {
         timeZone: TZ,
         year: 'numeric', month: '2-digit', day: '2-digit', weekday: 'short'
-      }).formatToParts(now).forEach(function (p) { parts[p.type] = p.value; });
+      }).formatToParts(new Date()).forEach(function (p) { parts[p.type] = p.value; });
     } catch (e) {
-      return; // 環境が Intl/timeZone 未対応なら静的表示のまま
+      return; // Intl/timeZone 未対応環境では静的表示のまま
     }
 
-    var weekdayJa = { Sun:'日', Mon:'月', Tue:'火', Wed:'水', Thu:'木', Fri:'金', Sat:'土' };
-    var wd = parts.weekday;
-    var isClosed = CLOSED_DAYS.indexOf(wd) !== -1;
+    var ja = { Sun:'日', Mon:'月', Tue:'火', Wed:'水', Thu:'木', Fri:'金', Sat:'土' };
+    var isClosed = CLOSED_DAYS.indexOf(parts.weekday) !== -1;
 
-    dateEl.textContent =
-      parts.year + '.' + parts.month + '.' + parts.day + ' (' + (weekdayJa[wd] || '') + ')';
-
-    stateEl.textContent = isClosed
-      ? '本日は定休日です'
-      : '本日は 17:00 OPEN の予定です';
+    dateEl.textContent = parts.year + '.' + parts.month + '.' + parts.day +
+                         ' (' + (ja[parts.weekday] || '') + ')';
+    stateEl.textContent = isClosed ? '本日は定休日です' : '本日は 17:00 OPEN の予定です';
     stateEl.setAttribute('data-open', isClosed ? 'false' : 'true');
   }
 
   /* ----------------------------------------------------------
-     02. 固定CTA / トップバーの表示制御
-     ヒーローを過ぎたら表示。最終CTAと重なる位置では隠す。
+     02. モバイルメニュー
      ---------------------------------------------------------- */
-  function bindStickyUi() {
-    var topbar = document.querySelector('[data-topbar]');
-    var sticky = document.querySelector('[data-stickycta]');
-    var hero = document.querySelector('.hero');
-    var finalCta = document.querySelector('.finalcta');
-    if (!hero) return;
+  function bindMenu() {
+    var burger = document.querySelector('[data-burger]');
+    var nav = document.getElementById('nav');
+    var scrim = document.querySelector('[data-scrim]');
+    if (!burger || !nav) return;
 
-    var pastHero = false;
-    var atFinal = false;
-
-    function apply() {
-      var show = pastHero && !atFinal;
-      if (topbar) topbar.classList.toggle('is-visible', show);
-      if (sticky) sticky.classList.toggle('is-visible', show);
+    function setOpen(open) {
+      burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+      nav.classList.toggle('is-open', open);
+      if (scrim) scrim.hidden = !open;
+      burger.querySelector('.sr-only').textContent = open ? 'メニューを閉じる' : 'メニューを開く';
     }
 
-    if (!('IntersectionObserver' in window)) {
-      if (topbar) topbar.classList.add('is-visible');
-      if (sticky) sticky.classList.add('is-visible');
-      return;
-    }
+    burger.addEventListener('click', function () {
+      setOpen(burger.getAttribute('aria-expanded') !== 'true');
+    });
+    if (scrim) scrim.addEventListener('click', function () { setOpen(false); });
 
-    new IntersectionObserver(function (entries) {
-      pastHero = !entries[0].isIntersecting;
-      apply();
-    }, { rootMargin: '-120px 0px 0px 0px' }).observe(hero);
+    // リンク選択後は閉じる
+    nav.addEventListener('click', function (e) {
+      if (e.target.closest('a')) setOpen(false);
+    });
 
-    if (finalCta) {
-      new IntersectionObserver(function (entries) {
-        atFinal = entries[0].isIntersecting;
-        apply();
-      }, { rootMargin: '0px 0px -40% 0px' }).observe(finalCta);
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && burger.getAttribute('aria-expanded') === 'true') {
+        setOpen(false);
+        burger.focus();
+      }
+    });
+
+    // デスクトップ幅に戻ったらドロワー状態を解除
+    if (window.matchMedia) {
+      var mq = window.matchMedia('(min-width: 1024px)');
+      var onChange = function (ev) { if (ev.matches) setOpen(false); };
+      if (mq.addEventListener) mq.addEventListener('change', onChange);
+      else if (mq.addListener) mq.addListener(onChange);
     }
   }
 
   /* ----------------------------------------------------------
-     03. スクロール表示（控えめ／prefers-reduced-motion を尊重）
+     03. モバイル固定CTA
+     ヒーローを過ぎたら表示。最終CTAと重なる位置では隠す。
+     ---------------------------------------------------------- */
+  function bindSticky() {
+    var sticky = document.querySelector('[data-sticky]');
+    var hero = document.querySelector('.hero');
+    var finalCta = document.querySelector('.final');
+    if (!sticky || !hero) return;
+
+    if (!('IntersectionObserver' in window)) {
+      sticky.classList.add('is-visible');
+      return;
+    }
+
+    var pastHero = false, atFinal = false;
+    function apply() { sticky.classList.toggle('is-visible', pastHero && !atFinal); }
+
+    new IntersectionObserver(function (es) {
+      pastHero = !es[0].isIntersecting; apply();
+    }, { rootMargin: '-120px 0px 0px 0px' }).observe(hero);
+
+    if (finalCta) {
+      new IntersectionObserver(function (es) {
+        atFinal = es[0].isIntersecting; apply();
+      }, { rootMargin: '0px 0px -35% 0px' }).observe(finalCta);
+    }
+  }
+
+  /* ----------------------------------------------------------
+     04. スクロール表示（控えめ／prefers-reduced-motion を尊重）
      JSでクラスを付与するため、JS無効時に非表示にならない。
      ---------------------------------------------------------- */
   function bindReveal() {
@@ -90,15 +117,14 @@
     if (reduce || !('IntersectionObserver' in window)) return;
 
     var targets = document.querySelectorAll(
-      '.hero__figure, .hero__body, .section__index, .section__title, .section__sub,' +
-      '.today, .feature, .shinagaki, .menu__daily-link, .daily, .steps,' +
-      '.section--reserve .btn, .notice, .pickup__text, .pickup__sub, .access,' +
-      '.faq, .iggrid, .ig__handle, .section--instagram .btn, .finalcta__title,' +
-      '.finalcta .hours, .finalcta .btn'
+      '.hero__body, .today__card, .today__figure, .feature__inner > *,' +
+      '.menu__head, .menu__list, .menu__figure, .daily__figure, .daily__body,' +
+      '.reserve__inner > *, .steps__i, .pickup__body, .access__body, .access__figure,' +
+      '.faq__inner > *, .ig__inner > *, .final__inner > *'
     );
+    if (!targets.length) return;
 
     var pending = [];
-
     function show(el) {
       el.classList.add('is-in');
       io.unobserve(el);
@@ -107,14 +133,12 @@
     }
 
     var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        if (entry.isIntersecting) show(entry.target);
-      });
-    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
+      entries.forEach(function (en) { if (en.isIntersecting) show(en.target); });
+    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.06 });
 
     Array.prototype.forEach.call(targets, function (el, i) {
       el.classList.add('reveal');
-      el.style.transitionDelay = (Math.min(i % 4, 3) * 60) + 'ms';
+      el.style.transitionDelay = (Math.min(i % 4, 3) * 55) + 'ms';
       pending.push(el);
       io.observe(el);
     });
@@ -144,7 +168,8 @@
 
   function init() {
     renderToday();
-    bindStickyUi();
+    bindMenu();
+    bindSticky();
     bindReveal();
   }
 

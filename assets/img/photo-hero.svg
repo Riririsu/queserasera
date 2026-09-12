@@ -1,0 +1,90 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" width="1600" height="900" role="img" aria-label="PLACEHOLDER 焼き台の焼鳥">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#080a10"/><stop offset=".55" stop-color="#140f0a"/><stop offset="1" stop-color="#2a1408"/>
+    </linearGradient>
+    <radialGradient id="emberGlow" cx="50%" cy="88%" r="62%">
+      <stop offset="0" stop-color="#ff7a1a" stop-opacity=".62"/>
+      <stop offset=".45" stop-color="#c8382c" stop-opacity=".28"/>
+      <stop offset="1" stop-color="#c8382c" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="meat" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#e8a457"/><stop offset=".42" stop-color="#c2702e"/>
+      <stop offset=".78" stop-color="#8a4318"/><stop offset="1" stop-color="#53230c"/>
+    </linearGradient>
+    <linearGradient id="char" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ffffff" stop-opacity=".26"/><stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="stick" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#d8c09a"/><stop offset="1" stop-color="#8a7350"/>
+    </linearGradient>
+    <filter id="soft"><feGaussianBlur stdDeviation="9"/></filter>
+    <filter id="softer"><feGaussianBlur stdDeviation="26"/></filter>
+    <filter id="smokeB"><feGaussianBlur stdDeviation="17"/></filter>
+    <radialGradient id="vig" cx="50%" cy="46%" r="72%">
+      <stop offset=".52" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".68"/>
+    </radialGradient>
+
+    <g id="skewer">
+      <rect x="-250" y="-5" width="500" height="10" rx="5" fill="url(#stick)"/>
+      <g fill="url(#meat)">
+        <rect x="-150" y="-31" width="76" height="62" rx="24"/>
+        <rect x="-62" y="-34" width="80" height="68" rx="26"/>
+        <rect x="30" y="-31" width="76" height="62" rx="24"/>
+        <rect x="118" y="-27" width="66" height="54" rx="22"/>
+      </g>
+      <g fill="url(#char)">
+        <rect x="-150" y="-31" width="76" height="26" rx="13"/>
+        <rect x="-62" y="-34" width="80" height="28" rx="14"/>
+        <rect x="30" y="-31" width="76" height="26" rx="13"/>
+        <rect x="118" y="-27" width="66" height="22" rx="11"/>
+      </g>
+      <g fill="#2a1206" fill-opacity=".5">
+        <ellipse cx="-112" cy="22" rx="26" ry="7"/><ellipse cx="-22" cy="25" rx="28" ry="7"/>
+        <ellipse cx="68" cy="22" rx="26" ry="7"/><ellipse cx="151" cy="19" rx="22" ry="6"/>
+      </g>
+    </g>
+  </defs>
+
+  <rect width="1600" height="900" fill="url(#bg)"/>
+
+  <!-- 炭床 -->
+  <rect x="0" y="640" width="1600" height="260" fill="#120a06"/>
+  <g filter="url(#soft)">
+    <g fill="#ff6a12" fill-opacity=".78">
+      <rect x="90" y="690" width="150" height="34" rx="16"/><rect x="300" y="706" width="180" height="30" rx="14"/>
+      <rect x="540" y="686" width="165" height="34" rx="16"/><rect x="770" y="712" width="190" height="30" rx="14"/>
+      <rect x="1020" y="690" width="160" height="34" rx="16"/><rect x="1250" y="708" width="200" height="30" rx="14"/>
+      <rect x="190" y="762" width="170" height="26" rx="13"/><rect x="620" y="770" width="210" height="26" rx="13"/>
+      <rect x="1090" y="766" width="180" height="26" rx="13"/>
+    </g>
+  </g>
+  <rect x="0" y="560" width="1600" height="340" fill="url(#emberGlow)"/>
+
+  <!-- 焼き台の枠 -->
+  <rect x="0" y="628" width="1600" height="26" fill="#0a0c12"/>
+  <rect x="0" y="628" width="1600" height="3" fill="#e8a457" fill-opacity=".22"/>
+
+  <!-- 奥の串（被写界深度でぼかす） -->
+  <g filter="url(#softer)" opacity=".5">
+    <use href="#skewer" transform="translate(1180 300) rotate(-13) scale(1.05)"/>
+    <use href="#skewer" transform="translate(1240 430) rotate(-10)"/>
+  </g>
+
+  <!-- 主役の串 -->
+  <g>
+    <use href="#skewer" transform="translate(560 470) rotate(-9) scale(1.18)"/>
+    <use href="#skewer" transform="translate(700 596) rotate(-6) scale(1.12)"/>
+    <use href="#skewer" transform="translate(880 352) rotate(-12) scale(1.04)"/>
+    <use href="#skewer" transform="translate(400 250) rotate(-15) scale(.92)" opacity=".88"/>
+  </g>
+
+  <!-- 煙 -->
+  <g filter="url(#smokeB)" fill="none" stroke="#fff" stroke-linecap="round">
+    <path d="M420 560 C 470 420 380 360 450 236 C 492 162 440 118 470 52" stroke-opacity=".16" stroke-width="30"/>
+    <path d="M880 540 C 930 424 856 360 918 260" stroke-opacity=".12" stroke-width="24"/>
+    <path d="M1240 566 C 1290 450 1210 386 1276 288" stroke-opacity=".10" stroke-width="22"/>
+  </g>
+
+  <rect width="1600" height="900" fill="url(#vig)"/>
+</svg>

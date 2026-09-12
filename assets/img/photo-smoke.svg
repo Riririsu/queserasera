@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" width="1600" height="900" role="img" aria-label="PLACEHOLDER 燻製塩">
+  <defs>
+    <linearGradient id="bg3" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#05070c"/><stop offset="1" stop-color="#131722"/>
+    </linearGradient>
+    <radialGradient id="spot" cx="63%" cy="60%" r="44%">
+      <stop offset="0" stop-color="#fff" stop-opacity=".30"/><stop offset="1" stop-color="#fff" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="saltG" cx="42%" cy="36%" r="68%">
+      <stop offset="0" stop-color="#fbf6ea"/><stop offset=".7" stop-color="#ddd2bb"/><stop offset="1" stop-color="#9d927c"/>
+    </radialGradient>
+    <filter id="bl1"><feGaussianBlur stdDeviation="22"/></filter>
+    <filter id="bl2"><feGaussianBlur stdDeviation="8"/></filter>
+    <radialGradient id="vig3" cx="60%" cy="56%" r="68%">
+      <stop offset=".45" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".76"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="1600" height="900" fill="url(#bg3)"/>
+  <rect width="1600" height="900" fill="url(#spot)"/>
+
+  <g transform="translate(330,0)">
+  <!-- 器 -->
+  <ellipse cx="730" cy="620" rx="300" ry="96" fill="#0b0e16"/>
+  <ellipse cx="730" cy="606" rx="292" ry="90" fill="#1b2130"/>
+  <ellipse cx="730" cy="600" rx="262" ry="78" fill="#0d111b"/>
+  <!-- 塩 -->
+  <ellipse cx="730" cy="592" rx="228" ry="64" fill="url(#saltG)"/>
+  <ellipse cx="700" cy="576" rx="150" ry="38" fill="#fff" opacity=".34"/>
+  <g fill="#fff" opacity=".5">
+    <circle cx="640" cy="590" r="3"/><circle cx="700" cy="602" r="2.4"/><circle cx="770" cy="586" r="3.2"/>
+    <circle cx="820" cy="600" r="2.6"/><circle cx="690" cy="568" r="2.2"/><circle cx="756" cy="612" r="2.8"/>
+    <circle cx="866" cy="592" r="2.2"/><circle cx="600" cy="604" r="2.4"/>
+  </g>
+  <g fill="#6b6152" opacity=".55">
+    <circle cx="664" cy="596" r="2.6"/><circle cx="742" cy="580" r="2.2"/><circle cx="800" cy="606" r="2.4"/>
+    <circle cx="620" cy="582" r="2"/><circle cx="838" cy="578" r="2.2"/>
+  </g>
+
+  <!-- 立ちのぼる煙 -->
+  <g filter="url(#bl1)" fill="none" stroke="#fff" stroke-linecap="round">
+    <path d="M660 556 C 700 430 610 366 682 246 C 724 172 668 126 700 44" stroke-opacity=".22" stroke-width="46"/>
+    <path d="M812 560 C 852 448 776 384 838 286 C 872 232 836 196 858 140" stroke-opacity=".16" stroke-width="38"/>
+    <path d="M540 566 C 574 470 512 420 560 340" stroke-opacity=".10" stroke-width="30"/>
+  </g>
+  <g filter="url(#bl2)" fill="none" stroke="#fff" stroke-opacity=".12" stroke-width="7" stroke-linecap="round">
+    <path d="M700 540 C 724 470 674 436 712 372"/>
+    <path d="M786 546 C 808 486 764 456 796 404"/>
+  </g>
+
+  </g>
+
+  <rect width="1600" height="900" fill="url(#vig3)"/>
+</svg>

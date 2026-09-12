@@ -27,10 +27,25 @@ Primary CTA は **「電話で注文する」（`tel:09044731867`）** の1つ�
 index.html                          全11セクション
 robots.txt                          noindex（デモのため）
 assets/css/style.css                スタイル一式
-assets/js/main.js                   TODAY表示 / CTA制御 / スクロール表示
-assets/img/placeholder-*.svg        写真プレースホルダー
+assets/js/main.js                   TODAY表示 / メニュー / CTA制御 / スクロール表示
+assets/img/logo.svg                 ロゴマーク（丸紋）
+assets/img/photo-*.svg              写真プレースホルダー
 assets/img/favicon.svg, ogp.svg     アイコン / OGP
 ```
+
+## デザイン方針
+
+ベースは**和紙のような生成り色**。確認済みのビジュアル要素である
+**濃紺・白いサイン・赤**のうち、濃紺は HERO / FEATURE / FAQ / 最終CTA / フッターの
+アクセントとして使い、赤は CTA とアクセントに限定しています。
+
+- 丸紋のロゴマークをヘッダー・最終CTA・フッターの軸に配置
+- HERO は写真の上にコピーを置きつつ、**暗いグラデーション側に文字を配置**して可読性を確保
+  （SPでは縦方向のグラデーションに切り替え）
+- HERO 右に**縦書きコピー**を配置（装飾のため `aria-hidden`）
+- 写真主体の**左右非対称レイアウト**（TODAY / MENU / DAILY / ACCESS）
+- RESERVATION は PC で 4ステップ横並び、SP で縦積み
+- 見出しは明朝体、数字・英字はサンセリフで対比をつける
 
 セクション順（ブリーフのIAに準拠。Hero→About→Service→Feature→Contact のテンプレート構成は不採用）:
 
@@ -53,7 +68,9 @@ assets/img/favicon.svg, ogp.svg     アイコン / OGP
 ## 実装方針
 
 - **ライブラリ・外部リクエストゼロ**。HTML/CSS/JS のみ。Webフォントも読み込まず端末内蔵の明朝／ゴシックを使用。
-- **JS無効でも全内容が読める**。スクロール表示のクラスはJSから付与しているため、非表示のまま残ることはありません。
+- **JS無効でも全内容が読める・電話できる**。`<html>` に `js` クラスを付けるプログレッシブ・エンハンスメント方式で、
+  JS無効時はスクロール連動を使わず固定CTAを常時表示し、開けないハンバーガーは出しません。
+  スクロール表示のクラスもJSから付与するため、非表示のまま残ることはありません。
 - **モバイルファースト**。ワイヤーフレームがスマートフォン基準のため、SPを基準に880px以上で2カラム化。
 - `prefers-reduced-motion: reduce` でモーションを全停止。
 - スキップリンク / ランドマーク / `:focus-visible` / ネイティブ`<details>` によるFAQ。
@@ -82,10 +99,15 @@ SVGのプレースホルダーを作成しています。**実写への差し替
 
 | ファイル | 用途 |
 |---|---|
-| `assets/img/placeholder-storefront.svg` | 01 HERO ／ 店舗外観 |
-| `assets/img/placeholder-yakitori.svg` | 03 FEATURE ／ 焼鳥アップ |
-| `assets/img/placeholder-exterior.svg` | 08 ACCESS ／ 入口・受け取り位置が分かる外観 |
+| `assets/img/photo-hero.svg` | 01 HERO ／ 焼き台の焼鳥 |
+| `assets/img/photo-storefront.svg` | 02 TODAY・08 ACCESS ／ 店舗外観 |
+| `assets/img/photo-smoke.svg` | 03 FEATURE ／ 燻製塩 |
+| `assets/img/photo-menu.svg` | 04 MENU ／ 商品写真 |
+| `assets/img/photo-phone.svg` | 05 DAILY ／ Instagram投稿 |
 | 10 INSTAGRAM のグリッド | 本番では公式Instagramの最新投稿を自動表示 |
+
+`assets/img/logo.svg` のロゴマークも、実店舗のロゴが未提供のため
+**仮のデザイン**です。正式なロゴデータへの差し替えが前提です。
 
 ---
 
@@ -110,10 +132,20 @@ SVGのプレースホルダーを作成しています。**実写への差し替
 - Visual DNA / Image Strategy / Motion Rules / Responsive Rules
 - Accessibility / SEO / Performance / Anti-template Rules
 
-上記は**確認済みの3色と、09 WIREFRAME 内に明記された禁止事項**
+当初は**確認済みの3色と、09 WIREFRAME 内に明記された禁止事項**
 （HEROを画面いっぱいにしない／写真と文字を重ねすぎない／3カード構成にしない／
-テンプレート的なIAにしない）のみを根拠に実装しています。
-残りの指示を受領次第、調整が必要です。
+テンプレート的なIAにしない）のみを根拠に実装しました。
+
+その後、**参考イメージ**を受領したため、ビジュアル方針をそちらに合わせています。
+
+なお参考イメージは、ブリーフ 09 の
+「HEROを画面いっぱいにしすぎない／写真と文字を重ねすぎない」とは方向が異なります。
+参考イメージを優先しつつ、**文字は必ず暗いグラデーション側に配置**し、
+HERO も全画面ではなく `min(76vh, 620px)` に抑えることで折り合いをつけています。
+（3カード構成にしない／テンプレート的なIAにしない、は引き続き遵守）
+
+残りの指示（Motion / Responsive / Accessibility / SEO / Performance）を
+受領次第、調整が必要です。
 
 #### 判断が必要な点：明朝体のWebフォント
 

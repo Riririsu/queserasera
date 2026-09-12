@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" width="1200" height="900" role="img" aria-label="PLACEHOLDER 店舗外観">
+  <defs>
+    <linearGradient id="sky2" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#9fb6cc"/><stop offset=".6" stop-color="#c8d6e2"/><stop offset="1" stop-color="#dfe6ea"/>
+    </linearGradient>
+    <linearGradient id="wall" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#1d3050"/><stop offset="1" stop-color="#101d33"/>
+    </linearGradient>
+    <linearGradient id="road" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#b9b6b0"/><stop offset="1" stop-color="#8e8b86"/>
+    </linearGradient>
+    <filter id="blurSky"><feGaussianBlur stdDeviation="6"/></filter>
+  </defs>
+
+  <rect width="1200" height="900" fill="url(#sky2)"/>
+  <g filter="url(#blurSky)" fill="#fff" fill-opacity=".5">
+    <ellipse cx="250" cy="130" rx="180" ry="52"/><ellipse cx="880" cy="96" rx="220" ry="46"/>
+  </g>
+  <!-- 遠景 -->
+  <rect x="0" y="300" width="1200" height="60" fill="#7d8a94" opacity=".45"/>
+  <g fill="#6f7d88" opacity=".4">
+    <rect x="40" y="250" width="120" height="110"/><rect x="1020" y="266" width="150" height="94"/>
+  </g>
+
+  <!-- 建物 -->
+  <rect x="120" y="288" width="800" height="392" fill="url(#wall)"/>
+  <rect x="120" y="288" width="800" height="16" fill="#0a1526"/>
+  <rect x="120" y="670" width="800" height="12" fill="#0a1526"/>
+  <!-- 波板の縦リブ -->
+  <g stroke="#ffffff" stroke-opacity=".05" stroke-width="2">
+    <path d="M160 304V670M200 304V670M240 304V670M280 304V670M320 304V670M360 304V670M400 304V670M440 304V670M480 304V670M520 304V670M560 304V670M600 304V670M640 304V670M680 304V670M720 304V670M760 304V670M800 304V670M840 304V670M880 304V670"/>
+  </g>
+
+  <!-- 庇 -->
+  <rect x="150" y="416" width="470" height="20" fill="#0a1526"/>
+  <rect x="150" y="436" width="470" height="8" fill="#000" opacity=".25"/>
+
+  <!-- 白いサイン -->
+  <rect x="196" y="330" width="330" height="74" rx="3" fill="#f4efe4"/>
+  <rect x="196" y="330" width="330" height="74" rx="3" fill="none" stroke="#0a1526" stroke-opacity=".3" stroke-width="2"/>
+  <text x="361" y="382" text-anchor="middle" font-family="'Hiragino Mincho ProN','Yu Mincho','Noto Serif JP',serif"
+        font-size="42" letter-spacing="9" fill="#16233c">けむり</text>
+  <rect x="196" y="410" width="330" height="5" fill="#b8302a"/>
+
+  <!-- 窓・受け渡し口 -->
+  <rect x="210" y="466" width="300" height="150" rx="2" fill="#e9edf0"/>
+  <rect x="210" y="466" width="300" height="150" rx="2" fill="#7f96ad" opacity=".55"/>
+  <rect x="210" y="466" width="300" height="150" rx="2" fill="none" stroke="#0a1526" stroke-width="5"/>
+  <line x1="360" y1="466" x2="360" y2="616" stroke="#0a1526" stroke-width="4"/>
+  <rect x="210" y="616" width="300" height="14" fill="#0a1526"/>
+
+  <!-- ドア -->
+  <rect x="700" y="452" width="120" height="228" fill="#0d1a2e"/>
+  <rect x="700" y="452" width="120" height="228" fill="none" stroke="#000" stroke-opacity=".4" stroke-width="3"/>
+  <rect x="716" y="486" width="88" height="104" fill="#6f8ba6" opacity=".5"/>
+
+  <!-- のぼり旗 -->
+  <rect x="962" y="352" width="62" height="300" fill="#16233c"/>
+  <rect x="962" y="352" width="62" height="300" fill="none" stroke="#f4efe4" stroke-opacity=".25"/>
+  <text transform="translate(1000 392) rotate(90)" font-family="'Hiragino Mincho ProN','Yu Mincho',serif"
+        font-size="30" letter-spacing="6" fill="#f4efe4">燻製塩焼鳥</text>
+  <rect x="954" y="340" width="6" height="330" fill="#8a7350"/>
+
+  <!-- ベンチ・自販機 -->
+  <rect x="556" y="596" width="120" height="12" fill="#a08a62"/>
+  <rect x="566" y="608" width="10" height="62" fill="#5d5348"/><rect x="656" y="608" width="10" height="62" fill="#5d5348"/>
+  <rect x="60" y="430" width="86" height="240" rx="4" fill="#c23a30"/>
+  <rect x="70" y="446" width="66" height="96" rx="3" fill="#f4efe4" opacity=".85"/>
+
+  <!-- 地面 -->
+  <rect x="0" y="670" width="1200" height="230" fill="url(#road)"/>
+  <rect x="0" y="670" width="1200" height="8" fill="#6f6c67"/>
+  <g stroke="#f4efe4" stroke-opacity=".55" stroke-width="5">
+    <path d="M180 760 h240"/><path d="M520 760 h240"/><path d="M860 760 h240"/>
+  </g>
+  <ellipse cx="520" cy="686" rx="420" ry="22" fill="#000" opacity=".16"/>
+</svg>
