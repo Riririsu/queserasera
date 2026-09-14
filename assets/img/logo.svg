@@ -1,36 +1,42 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100" role="img" aria-label="燻製塩焼鳥 けむり ロゴ">
-  <circle cx="50" cy="50" r="49" fill="#b8302a"/>
-  <circle cx="50" cy="50" r="44.5" fill="none" stroke="#e8c98a" stroke-width="1.1"/>
-  <circle cx="50" cy="50" r="41" fill="#f4efe4"/>
-  <circle cx="50" cy="50" r="41" fill="none" stroke="#b8302a" stroke-width="1.6"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="120" height="120" role="img" aria-label="燻製塩焼鳥 けむり">
+  <!-- 外周：墨 -->
+  <circle cx="60" cy="60" r="59" fill="#11171A"/>
+  <!-- 和風の細い刻み -->
+  <g stroke="#F4D000" stroke-width="1.4" stroke-linecap="round" opacity=".85">
+    <path d="M60 3.5v5M60 111.5v5M3.5 60h5M111.5 60h5"/>
+    <path d="M20.1 20.1l3.5 3.5M96.4 96.4l3.5 3.5M99.9 20.1l-3.5 3.5M23.6 96.4l-3.5 3.5"/>
+  </g>
+  <!-- 黄のリング -->
+  <circle cx="60" cy="60" r="52" fill="none" stroke="#F4D000" stroke-width="2.4"/>
+  <!-- 生成りの地 -->
+  <circle cx="60" cy="60" r="47" fill="#F4F0E8"/>
+  <circle cx="60" cy="60" r="47" fill="none" stroke="#11171A" stroke-width="1.6"/>
 
-  <g fill="#14203a">
-    <!-- 尾羽 -->
-    <path d="M31 55 C 20 50 19 38 25 30 C 25 40 31 43 34 47 Z"/>
-    <path d="M34 58 C 23 56 18 46 21 37 C 24 46 31 48 36 50 Z"/>
-    <!-- 胴 -->
-    <ellipse cx="50" cy="57" rx="16" ry="13"/>
-    <!-- 首・頭 -->
-    <path d="M56 50 C 55 42 58 36 63 34 C 68 33 71 37 70 42 C 69 47 64 49 60 51 Z"/>
-    <circle cx="65" cy="38" r="7.4"/>
-    <!-- 脚 -->
-    <path d="M45 69 l-2 8 h2.6 l2-8 Z"/>
-    <path d="M54 69 l2 8 h-2.6 l-2-8 Z"/>
-    <path d="M40 77 h7 v2 h-7 Z"/>
-    <path d="M53 77 h7 v2 h-7 Z"/>
+  <!-- 煙（細い線） -->
+  <g fill="none" stroke="#604A3C" stroke-opacity=".5" stroke-width="1.8" stroke-linecap="round">
+    <path d="M34 38 C 37.5 32 31.5 29 35 23"/>
+    <path d="M42 33.5 C 45 28.5 39.8 26 42.6 21"/>
   </g>
 
-  <!-- とさか・肉垂・くちばし -->
-  <g fill="#b8302a">
-    <path d="M60 31 c1.5-3 4-3 4.6-.4 c1.4-2.6 4-2.4 4.4.6 c1.6-1.8 3.8-.8 3.4 1.8 c-.4 2.4-3 3.2-6 2.6 c-3-.6-5.6-2-6.4-4.6 Z"/>
-    <path d="M65.4 45.6 c1.8 0 3 1.4 2.6 3 c-.4 1.6-2.2 2.2-3.4 1.2 c-1-.8-1-3 .8-4.2 Z"/>
+  <!-- 鶏 -->
+  <g fill="#11171A">
+    <path d="M38 66 C 26 60.5 25 47.5 32 39 C 32 49.5 38 53 41.5 57.5 Z"/>
+    <path d="M41.5 69.5 C 29.5 67.5 24.5 56 28 45.5 C 31 55.5 38.5 58 44 60 Z"/>
+    <ellipse cx="60" cy="68.5" rx="18.5" ry="15"/>
+    <path d="M67 60 C 66 51 69.5 44 75 41.5 C 80.5 40.5 84 45 83 50.5 C 82 56.5 76 58.5 71.5 61 Z"/>
+    <circle cx="77.5" cy="45.5" r="8.8"/>
+    <path d="M54 82.5 l-2.4 9.5 h3.1 l2.4-9.5 Z"/>
+    <path d="M65 82.5 l2.4 9.5 h-3.1 l-2.4-9.5 Z"/>
+    <path d="M48 92 h8.4 v2.4 h-8.4 Z"/>
+    <path d="M63.6 92 h8.4 v2.4 h-8.4 Z"/>
   </g>
-  <path d="M72 38.4 l7.4 2.4 l-7.4 2.6 Z" fill="#e0a23c"/>
-  <circle cx="67.4" cy="36.6" r="1.25" fill="#f4efe4"/>
 
-  <!-- 煙 -->
-  <g fill="none" stroke="#14203a" stroke-opacity=".34" stroke-width="1.5" stroke-linecap="round">
-    <path d="M26 26 C 29 21 24 19 27 14"/>
-    <path d="M33 22 C 35.5 18 32 16.5 34 13"/>
+  <!-- とさか・肉垂（赤） -->
+  <g fill="#D92C20">
+    <path d="M71.5 37.5 c1.8-3.6 4.8-3.6 5.5-.5 c1.7-3.1 4.8-2.9 5.3.7 c1.9-2.2 4.6-1 4.1 2.1 c-.5 2.9-3.6 3.9-7.2 3.1 c-3.6-.7-6.7-2.4-7.7-5.4 Z"/>
+    <path d="M78 54 c2.2 0 3.6 1.7 3.1 3.6 c-.5 1.9-2.6 2.6-4.1 1.4 c-1.2-1-1.2-3.6 1-5 Z"/>
   </g>
+  <!-- くちばし（黄） -->
+  <path d="M86 45.5 l9 2.9 l-9 3.1 Z" fill="#F4D000"/>
+  <circle cx="80.5" cy="42.8" r="1.5" fill="#F4F0E8"/>
 </svg>

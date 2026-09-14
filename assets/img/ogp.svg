@@ -1,24 +1,25 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
-  <defs>
-    <linearGradient id="g" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0" stop-color="#101c30"/><stop offset="1" stop-color="#1d1209"/>
-    </linearGradient>
-    <radialGradient id="e" cx="50%" cy="100%" r="70%">
-      <stop offset="0" stop-color="#ff7a1a" stop-opacity=".34"/><stop offset="1" stop-color="#ff7a1a" stop-opacity="0"/>
-    </radialGradient>
-  </defs>
-  <rect width="1200" height="630" fill="url(#g)"/>
-  <rect width="1200" height="630" fill="url(#e)"/>
-  <circle cx="600" cy="176" r="58" fill="#b8302a"/>
-  <circle cx="600" cy="176" r="48" fill="#f4efe4"/>
-  <circle cx="600" cy="176" r="14" fill="#14203a"/>
-  <text x="600" y="330" text-anchor="middle" font-family="'Hiragino Mincho ProN','Yu Mincho','Noto Serif JP',serif"
-        font-size="40" letter-spacing="16" fill="#f4efe4" fill-opacity=".8">燻製塩焼鳥</text>
-  <text x="600" y="418" text-anchor="middle" font-family="'Hiragino Mincho ProN','Yu Mincho','Noto Serif JP',serif"
-        font-size="76" letter-spacing="14" fill="#f4efe4">けむり</text>
-  <rect x="520" y="452" width="160" height="4" fill="#b8302a"/>
-  <text x="600" y="516" text-anchor="middle" font-family="Helvetica,Arial,sans-serif"
-        font-size="22" letter-spacing="7" fill="#f4efe4" fill-opacity=".6">17:00 OPEN / 22:00 CLOSE</text>
-  <text x="600" y="558" text-anchor="middle" font-family="'Hiragino Sans','Yu Gothic',sans-serif"
-        font-size="17" letter-spacing="4" fill="#f08a80">売切れ次第CLOSE</text>
+  <rect width="1200" height="630" fill="#11171A"/>
+  <g fill="none" stroke="#F4F0E8" stroke-opacity=".14" stroke-width="2" stroke-linecap="round">
+    <path d="M980 600 C 1030 480 950 410 1010 286 C 1048 208 1000 158 1032 70"/>
+    <path d="M1090 600 C 1134 500 1064 440 1118 340"/>
+  </g>
+  <circle cx="160" cy="150" r="58" fill="none" stroke="#F4D000" stroke-width="4"/>
+  <circle cx="160" cy="150" r="50" fill="#F4F0E8"/>
+  <g fill="#11171A" transform="translate(160 150) scale(.72) translate(-60 -60)">
+    <path d="M38 66 C 26 60.5 25 47.5 32 39 C 32 49.5 38 53 41.5 57.5 Z"/>
+    <ellipse cx="60" cy="68.5" rx="18" ry="15"/>
+    <path d="M67 60 C 66 51 69.5 44 75 41.5 C 80.5 40.5 84 45 83 50.5 C 82 56.5 76 58.5 71.5 61 Z"/>
+    <circle cx="77.5" cy="45.5" r="8.8"/>
+    <path d="M54 82.5 l-2.4 9.5 h3.1 l2.4-9.5 Z"/><path d="M65 82.5 l2.4 9.5 h-3.1 l-2.4-9.5 Z"/>
+  </g>
+  <text x="96" y="316" font-family="'Hiragino Mincho ProN','Yu Mincho','Noto Serif JP',serif"
+        font-size="30" letter-spacing="14" fill="#F4F0E8" fill-opacity=".72">燻製塩焼鳥</text>
+  <text x="96" y="420" font-family="'Hiragino Mincho ProN','Yu Mincho','Noto Serif JP',serif"
+        font-size="86" letter-spacing="12" fill="#F4F0E8">けむり</text>
+  <rect x="96" y="460" width="3" height="56" fill="#F4D000"/>
+  <text x="116" y="486" font-family="'Hiragino Mincho ProN','Yu Mincho',serif"
+        font-size="25" letter-spacing="5" fill="#F4F0E8" fill-opacity=".8">燻製塩で焼く、焼き立ての焼鳥。</text>
+  <text x="116" y="522" font-family="'Hiragino Sans','Yu Gothic',sans-serif"
+        font-size="16" letter-spacing="4" fill="#F4D000">テイクアウト専門／ご注文はお電話で</text>
 </svg>
