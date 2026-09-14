@@ -1,89 +1,97 @@
 /* ============================================================
    燻製塩焼鳥 けむり｜RIKKUN WEB STUDIO 提案用デモ
-   ライブラリ非依存。JS無効でも全内容が読め、電話できる。
-   アニメーションは必要最小限。
+   ライブラリ非依存。アニメーションは最小限。
+   固定CTAは常時表示のため、JSでは制御しない。
    ============================================================ */
 (function () {
   'use strict';
 
-  /* 固定CTA：ヒーローを過ぎたら表示し、最終CTAと重なる位置では隠す */
-  function stickyCta() {
-    var el = document.querySelector('.sticky');
-    var hero = document.querySelector('.hero');
-    var last = document.querySelector('.final');
-    if (!el || !hero) return;
+  /* モバイルメニュー */
+  function menu() {
+    var b = document.querySelector('[data-burger]');
+    var nav = document.getElementById('nav');
+    var scrim = document.querySelector('[data-scrim]');
+    if (!b || !nav) return;
 
-    if (!('IntersectionObserver' in window)) { el.classList.add('on'); return; }
-
-    var past = false, atEnd = false;
-    function apply() { el.classList.toggle('on', past && !atEnd); }
-
-    new IntersectionObserver(function (e) {
-      past = !e[0].isIntersecting; apply();
-    }, { rootMargin: '-100px 0px 0px 0px' }).observe(hero);
-
-    if (last) {
-      new IntersectionObserver(function (e) {
-        atEnd = e[0].isIntersecting; apply();
-      }, { rootMargin: '0px 0px -30% 0px' }).observe(last);
+    function set(open) {
+      b.setAttribute('aria-expanded', open ? 'true' : 'false');
+      nav.classList.toggle('open', open);
+      if (scrim) scrim.hidden = !open;
+      b.querySelector('.sr').textContent = open ? 'メニューを閉じる' : 'メニューを開く';
+    }
+    b.addEventListener('click', function () { set(b.getAttribute('aria-expanded') !== 'true'); });
+    if (scrim) scrim.addEventListener('click', function () { set(false); });
+    nav.addEventListener('click', function (e) { if (e.target.closest('a')) set(false); });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && b.getAttribute('aria-expanded') === 'true') { set(false); b.focus(); }
+    });
+    if (window.matchMedia) {
+      var mq = window.matchMedia('(min-width: 1080px)');
+      var fn = function (ev) { if (ev.matches) set(false); };
+      if (mq.addEventListener) mq.addEventListener('change', fn);
+      else if (mq.addListener) mq.addListener(fn);
     }
   }
 
-  /* スクロール導入：短いフェードのみ。reduced-motion では何もしない */
+  /* ページ上部へ戻る：ヒーローを過ぎたら表示 */
+  function toTop() {
+    var el = document.querySelector('[data-top]');
+    var hero = document.querySelector('.hero');
+    if (!el || !hero || !('IntersectionObserver' in window)) return;
+    new IntersectionObserver(function (e) {
+      el.classList.toggle('on', !e[0].isIntersecting);
+    }, { rootMargin: '-100px 0px 0px 0px' }).observe(hero);
+  }
+
+  /* scroll reveal（控えめ／reduced-motion では無効） */
   function reveal() {
     var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (reduce || !('IntersectionObserver' in window)) return;
 
-    var targets = document.querySelectorAll(
-      '.hero__body, .slot, .first__lead, .first__act, .why .eyebrow, .why .h2,' +
-      '.why__lead, .flow__i, .menu__head, .shina, .today__in > *, .steps__i,' +
-      '.order__foot, .pick__b, .access__b, .ig__in > *, .final__in > *'
+    var t = document.querySelectorAll(
+      '.hero__in > *, .first .sn, .first .h2, .first .lead, .steps__i, .first__cta, .first .warn,' +
+      '.about__in > *, .menu .sn, .menu .h2, .menu .lead, .menu__g > *,' +
+      '.today__b, .ph--today, .order > .wrap > *, .pick__b, .ph--pick,' +
+      '.acc > .wrap > *, .ig > .wrap > *, .fin__in > *'
     );
-    if (!targets.length) return;
+    if (!t.length) return;
 
-    var waiting = [];
+    var wait = [];
     function show(el) {
       el.classList.add('in');
       io.unobserve(el);
-      var i = waiting.indexOf(el);
-      if (i !== -1) waiting.splice(i, 1);
+      var i = wait.indexOf(el); if (i !== -1) wait.splice(i, 1);
     }
-
-    var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (en) { if (en.isIntersecting) show(en.target); });
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (e) { if (e.isIntersecting) show(e.target); });
     }, { rootMargin: '0px 0px -6% 0px', threshold: 0.05 });
 
-    Array.prototype.forEach.call(targets, function (el) {
+    Array.prototype.forEach.call(t, function (el, i) {
       el.classList.add('rv');
-      waiting.push(el);
+      el.style.transitionDelay = (Math.min(i % 3, 2) * 50) + 'ms';
+      wait.push(el);
       io.observe(el);
     });
 
-    // 保険：高速スクロールやアンカー移動で通過した要素を確実に表示する
-    var queued = false;
+    // 保険：高速スクロールやアンカー移動で通過した要素を確実に表示
+    var q = false;
     function sweep() {
-      queued = false;
-      for (var i = waiting.length - 1; i >= 0; i--) {
-        if (waiting[i].getBoundingClientRect().top < window.innerHeight) show(waiting[i]);
+      q = false;
+      for (var i = wait.length - 1; i >= 0; i--) {
+        if (wait[i].getBoundingClientRect().top < window.innerHeight) show(wait[i]);
       }
-      if (!waiting.length) {
-        window.removeEventListener('scroll', onScroll);
-        window.removeEventListener('resize', onScroll);
+      if (!wait.length) {
+        window.removeEventListener('scroll', on);
+        window.removeEventListener('resize', on);
       }
     }
-    function onScroll() {
-      if (queued) return;
-      queued = true;
-      window.requestAnimationFrame(sweep);
-    }
-    window.addEventListener('scroll', onScroll, { passive: true });
-    window.addEventListener('resize', onScroll);
-    onScroll();
+    function on() { if (q) return; q = true; window.requestAnimationFrame(sweep); }
+    window.addEventListener('scroll', on, { passive: true });
+    window.addEventListener('resize', on);
+    on();
   }
 
-  function init() { stickyCta(); reveal(); }
-
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', init);
-  } else { init(); }
+  function init() { menu(); toTop(); reveal(); }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
+  else init();
 })();
