@@ -1,5 +1,5 @@
 import Photo from './Photo.jsx';
-import { SectionHead, FadeUp, DrawLine } from './Motion.jsx';
+import { SectionHead, FadeUp, DrawLine, Smoke } from './Motion.jsx';
 
 const FLOW = [
   { k: '煙', t: '燻す' },
@@ -13,6 +13,7 @@ export default function SmokedSalt() {
     <section className="sec sec--salt" id="salt" aria-labelledby="salt-h">
       <Photo slot="salt-smoke" className="salt__bg" reveal={false} ratio="auto" />
       <span className="salt__veil" aria-hidden="true" />
+      <Smoke className="smoke--salt" />
 
       <div className="wrap salt__inner">
         <SectionHead n="03" label="SMOKED SALT" title={<span id="salt-h">味の軸は、<br />燻製塩。</span>}>

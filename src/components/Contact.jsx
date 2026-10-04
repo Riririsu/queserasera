@@ -1,10 +1,11 @@
 import { SITE } from '../data/site.js';
-import { FadeUp, TelCta } from './Motion.jsx';
+import { FadeUp, TelCta, Smoke } from './Motion.jsx';
 import logo from '../assets/brand/logo.svg';
 
 export default function Contact() {
   return (
     <section className="sec sec--contact" aria-labelledby="contact-h">
+      <Smoke className="smoke--contact" />
       <div className="wrap contact__in">
         <FadeUp>
           <img className="contact__logo" src={logo} width="120" height="120" alt="" loading="lazy" />

@@ -1,6 +1,6 @@
 import { SITE, MENU } from '../data/site.js';
 import Photo from './Photo.jsx';
-import { SectionHead, FadeUp } from './Motion.jsx';
+import { SectionHead, FadeUp, Stagger, StaggerItem } from './Motion.jsx';
 
 export default function Menu() {
   const [lead, ...rest] = MENU;
@@ -17,14 +17,14 @@ export default function Menu() {
             <p className="menugrid__name menugrid__name--lead">{lead.name}</p>
           </FadeUp>
 
-          <ul className="menugrid__rest">
-            {rest.map((m, i) => (
-              <FadeUp as="li" key={m.slot} delay={0.05 * i}>
+          <Stagger as="ul" className="menugrid__rest" gap={0.075}>
+            {rest.map((m) => (
+              <StaggerItem as="li" key={m.slot}>
                 <Photo slot={m.slot} ratio="1 / 1" sizes="(min-width: 900px) 24vw, 45vw" />
                 <p className="menugrid__name">{m.name}</p>
-              </FadeUp>
+              </StaggerItem>
             ))}
-          </ul>
+          </Stagger>
         </div>
 
         <FadeUp className="menu__foot">

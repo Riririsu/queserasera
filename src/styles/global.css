@@ -113,3 +113,59 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
   --ic-ig:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2.2c3.2 0 3.6 0 4.9.1 1.2.1 1.8.2 2.2.4.6.2 1 .5 1.4.9.4.4.7.8.9 1.4.2.4.4 1 .4 2.2.1 1.3.1 1.7.1 4.9s0 3.6-.1 4.9c-.1 1.2-.2 1.8-.4 2.2-.2.6-.5 1-.9 1.4-.4.4-.8.7-1.4.9-.4.2-1 .4-2.2.4-1.3.1-1.7.1-4.9.1s-3.6 0-4.9-.1c-1.2-.1-1.8-.2-2.2-.4-.6-.2-1-.5-1.4-.9-.4-.4-.7-.8-.9-1.4-.2-.4-.4-1-.4-2.2C2.2 15.6 2.2 15.2 2.2 12s0-3.6.1-4.9c.1-1.2.2-1.8.4-2.2.2-.6.5-1 .9-1.4.4-.4.8-.7 1.4-.9.4-.2 1-.4 2.2-.4C8.4 2.2 8.8 2.2 12 2.2zm0 1.8c-3.1 0-3.5 0-4.8.1-.9 0-1.4.2-1.7.3-.4.2-.7.4-1 .7-.3.3-.5.6-.7 1-.1.3-.3.8-.3 1.7-.1 1.3-.1 1.7-.1 4.8s0 3.5.1 4.8c0 .9.2 1.4.3 1.7.2.4.4.7.7 1 .3.3.6.5 1 .7.3.1.8.3 1.7.3 1.3.1 1.7.1 4.8.1s3.5 0 4.8-.1c.9 0 1.4-.2 1.7-.3.4-.2.7-.4 1-.7.3-.3.5-.6.7-1 .1-.3.3-.8.3-1.7.1-1.3.1-1.7.1-4.8s0-3.5-.1-4.8c0-.9-.2-1.4-.3-1.7-.2-.4-.4-.7-.7-1-.3-.3-.6-.5-1-.7-.3-.1-.8-.3-1.7-.3-1.3-.1-1.7-.1-4.8-.1zm0 3.1a4.9 4.9 0 1 1 0 9.8 4.9 4.9 0 0 1 0-9.8zm0 8.1a3.2 3.2 0 1 0 0-6.4 3.2 3.2 0 0 0 0 6.4zm6.2-8.3a1.15 1.15 0 1 1-2.3 0 1.15 1.15 0 0 1 2.3 0z'/%3E%3C/svg%3E");
   --ic-pin:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2c3.9 0 7 3.1 7 7 0 5.2-7 13-7 13S5 14.2 5 9c0-3.9 3.1-7 7-7zm0 9.5a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z'/%3E%3C/svg%3E");
 }
+
+/* ============================================================
+   MOTION（追加分）
+   すべて transform / opacity のみ。JSの計算を増やさない。
+   prefers-reduced-motion では全て停止する。
+   ============================================================ */
+
+/* 行マスク：下から立ち上がる見出し */
+.mask{display:block;overflow:hidden;padding-bottom:.14em;margin-bottom:-.14em}
+.mask__in{display:block;will-change:transform}
+
+/* 立ちのぼる煙。暗い面の空気づくりに薄く重ねる */
+.smoke{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:1}
+.smoke__l{position:absolute;bottom:-28%;width:46%;height:150%;opacity:0;
+  background:radial-gradient(closest-side,rgba(242,237,227,.1),transparent 72%);
+  filter:blur(26px);will-change:transform,opacity}
+.smoke__l--1{left:4%;animation:drift 26s linear infinite}
+.smoke__l--2{left:38%;width:54%;animation:drift 34s linear infinite;animation-delay:-11s}
+.smoke__l--3{left:68%;width:40%;animation:drift 30s linear infinite;animation-delay:-20s}
+@keyframes drift{
+  0%{transform:translate3d(0,14%,0) scale(.86);opacity:0}
+  18%{opacity:.5}
+  70%{opacity:.34}
+  100%{transform:translate3d(5%,-42%,0) scale(1.22);opacity:0}
+}
+.smoke--hero .smoke__l{background:radial-gradient(closest-side,rgba(242,237,227,.13),transparent 72%)}
+.smoke--salt .smoke__l{background:radial-gradient(closest-side,rgba(242,237,227,.09),transparent 72%)}
+.smoke--contact .smoke__l{background:radial-gradient(closest-side,rgba(209,55,42,.16),transparent 70%)}
+
+/* 写真：ポインタ環境だけ、寄ったときにわずかに寄る */
+@media (hover:hover){
+  .photo__img{transition:transform .9s cubic-bezier(.22,.61,.36,1)}
+  .menugrid__lead:hover .photo__img,
+  .menugrid__rest li:hover .photo__img,
+  .iggrid li:hover .photo__img{transform:scale(1.045)}
+}
+
+/* ヒーロー下端のスクロール示唆 */
+.hero__scroll{display:none}
+@media (min-width:900px){
+  .hero__scroll{display:block;position:absolute;left:var(--pad);bottom:clamp(18px,3vw,30px);
+    width:1px;height:54px;overflow:hidden;background:rgba(242,237,227,.16)}
+  .hero__scrollLine{position:absolute;inset:0;background:var(--gold);
+    transform-origin:top;animation:scrollhint 2.6s cubic-bezier(.6,0,.4,1) infinite}
+}
+@keyframes scrollhint{
+  0%{transform:translateY(-100%)}
+  55%,100%{transform:translateY(100%)}
+}
+
+@media (prefers-reduced-motion:reduce){
+  .smoke{display:none}
+  .photo__img{transition:none}
+  .hero__scrollLine{animation:none;transform:none}
+  .mask{padding-bottom:0;margin-bottom:0}
+}

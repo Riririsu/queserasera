@@ -1,5 +1,5 @@
 import { SITE, ORDER_STEPS } from '../data/site.js';
-import { SectionHead, FadeUp, TelCta, DrawLine } from './Motion.jsx';
+import { SectionHead, FadeUp, TelCta, DrawLine, Stagger, StaggerItem } from './Motion.jsx';
 
 export default function Order() {
   return (
@@ -9,16 +9,16 @@ export default function Order() {
           事前にお電話いただくと、受け取りがスムーズです。
         </SectionHead>
 
-        <ol className="flow">
-          {ORDER_STEPS.map((s, i) => (
-            <FadeUp as="li" key={s.n} className="flow__i" delay={0.07 * i}>
+        <Stagger as="ol" className="flow" gap={0.09}>
+          {ORDER_STEPS.map((s) => (
+            <StaggerItem as="li" key={s.n} className="flow__i">
               <span className="flow__n">{s.n}</span>
               <span className="flow__line" aria-hidden="true" />
               <h3 className="flow__t">{s.title}</h3>
               <p className="flow__b">{s.body}</p>
-            </FadeUp>
+            </StaggerItem>
           ))}
-        </ol>
+        </Stagger>
 
         <DrawLine className="order__rule" />
 
