@@ -1,17 +1,5 @@
-import Header from './components/Header.jsx';
-import Hero from './components/Hero.jsx';
-import Kemuri from './components/Kemuri.jsx';
-import SmokedSalt from './components/SmokedSalt.jsx';
-import Menu from './components/Menu.jsx';
-import TodaysMenu from './components/TodaysMenu.jsx';
-import Order from './components/Order.jsx';
-import FreshGrilled from './components/FreshGrilled.jsx';
-import Access from './components/Access.jsx';
-import Faq from './components/Faq.jsx';
-import InstagramSection from './components/InstagramSection.jsx';
-import Contact from './components/Contact.jsx';
-import StickyCta from './components/StickyCta.jsx';
-import Footer from './components/Footer.jsx';
+import { Header, PhoneBar, Footer } from './components/Chrome.jsx';
+import { Hero, About, Shinagaki, HowTo, Store, Closing } from './components/Sections.jsx';
 
 export default function App() {
   return (
@@ -20,19 +8,14 @@ export default function App() {
       <Header />
       <main id="main">
         <Hero />
-        <Kemuri />
-        <SmokedSalt />
-        <Menu />
-        <TodaysMenu />
-        <Order />
-        <FreshGrilled />
-        <Access />
-        <Faq />
-        <InstagramSection />
-        <Contact />
+        <About />
+        <Shinagaki />
+        <HowTo />
+        <Store />
+        <Closing />
       </main>
       <Footer />
-      <StickyCta />
+      <PhoneBar />
     </>
   );
 }

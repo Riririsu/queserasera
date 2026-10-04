@@ -26,22 +26,21 @@ export const SITE = {
 };
 
 export const NAV = [
-  { href: '#kemuri', label: 'けむりについて' },
-  { href: '#salt', label: '燻製塩' },
-  { href: '#menu', label: 'メニュー' },
-  { href: '#order', label: '注文方法' },
-  { href: '#access', label: 'アクセス' },
+  { href: '#about', label: 'けむりのこと' },
+  { href: '#menu', label: '品書き' },
+  { href: '#order', label: '買い方' },
+  { href: '#store', label: '店' },
 ];
 
 /** 公開情報から確認できた品のみ。価格は設定しない。 */
 export const MENU = [
-  { name: 'もも', slot: 'menu-momo' },
-  { name: '豚バラ', slot: 'menu-butabara' },
-  { name: 'ねぎま', slot: 'menu-negima' },
-  { name: 'つくね', slot: 'menu-tsukune' },
-  { name: 'レバー', slot: 'menu-lever' },
-  { name: '砂ずり', slot: 'menu-sunazuri' },
-  { name: 'スモークチーズ', slot: 'menu-cheese' },
+  { name: 'もも' },
+  { name: '豚バラ' },
+  { name: 'ねぎま' },
+  { name: 'つくね' },
+  { name: 'レバー' },
+  { name: '砂ずり' },
+  { name: 'スモークチーズ' },
 ];
 
 export const ORDER_STEPS = [
