@@ -1,4 +1,6 @@
+import { useState, useEffect } from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
+import { shopState, ctaLabel } from '../lib/now.js';
 
 export const EASE = [0.22, 0.61, 0.36, 1];
 
@@ -135,12 +137,24 @@ export function SectionHead({ n, label, title, children, onDark = false }) {
 }
 
 /** 電話CTA。サイト内で最重要の操作。 */
-export function TelCta({ tel, telLink, label = '電話で注文する', size = 'md', showNumber = true }) {
+/**
+ * 電話ボタン。用件は時間帯で変わるので、label を渡さなければ時計に合わせる。
+ * 閉店1時間前からは「注文」ではなく「在庫を確認」。リンク先は同じ番号。
+ */
+export function TelCta({ tel, telLink, label, size = 'md', showNumber = true }) {
+  const [auto, setAuto] = useState(() => ctaLabel(shopState()));
+  useEffect(() => {
+    const tick = () => setAuto(ctaLabel(shopState()));
+    const id = setInterval(tick, 60000);
+    const onVis = () => !document.hidden && tick();
+    document.addEventListener('visibilitychange', onVis);
+    return () => { clearInterval(id); document.removeEventListener('visibilitychange', onVis); };
+  }, []);
   return (
     <a className={`tel tel--${size}`} href={telLink} data-cta>
       <span className="tel__ic" aria-hidden="true" />
       <span className="tel__txt">
-        <span className="tel__label">{label}</span>
+        <span className="tel__label">{label ?? auto}</span>
         {showNumber ? <span className="tel__num">{tel}</span> : null}
       </span>
     </a>

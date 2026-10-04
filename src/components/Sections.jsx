@@ -130,6 +130,7 @@ export function HowTo() {
         <FadeUp as="h2" className="h2 h2--ink" delay={0.05}>電話一本で、取り置きます。</FadeUp>
         <FadeUp as="p" className="howto__lead" delay={0.1}>
           焼きはじめるのは注文を受けてから。先に電話をもらえると、待たずに渡せます。
+          売り切れていないかを先に確かめられるのも、電話だけです。
         </FadeUp>
 
         <Stagger as="ol" className="steps" gap={0.09}>

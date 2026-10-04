@@ -196,8 +196,18 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
   70%{box-shadow:0 0 0 11px rgba(240,160,60,0)}100%{box-shadow:0 0 0 0 rgba(240,160,60,0)}}
 .now__sub{margin-top:6px;font-size:13.5px;color:var(--on-d-74)}
 .now__extra{margin-left:10px;color:var(--okibi);font-variant-numeric:tabular-nums}
-.now__fine{margin-top:14px;font-size:11.5px;line-height:1.85;color:var(--on-d-54)}
-.now__fine a{color:var(--on-d-74)}
+/* 在庫のこと。
+   売切れ次第CLOSE はこの店の営業条件そのものなので、
+   小さな注記ではなく、時刻と同じ重さで置く。熾火の縦罫で「これは別の話」と示す。 */
+.stock{margin-top:16px;padding:12px 0 2px 14px;border-left:2px solid rgba(240,160,60,.55)}
+.stock--last{border-left-color:var(--okibi)}
+.stock__k{font-family:var(--min);font-weight:700;font-size:12px;letter-spacing:.14em;
+  color:var(--okibi);margin-bottom:5px}
+.stock__b{font-size:13px;line-height:1.95;color:var(--on-d-74)}
+.stock--last .stock__b{color:var(--haku)}
+.stock__ig{display:inline-block;margin-left:.2em;color:var(--on-d-74);
+  text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1px}
+@media (hover:hover){.stock__ig:hover{color:var(--okibi)}}
 
 /* 五時間の線 */
 .burn{display:flex;align-items:center;gap:10px;margin-top:16px}

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
 import { SITE, NAV } from '../data/site.js';
-import { shopState } from '../lib/now.js';
+import { shopState, ctaLabel } from '../lib/now.js';
 import logo from '../assets/brand/logo.svg';
 
 export function Header() {
@@ -96,7 +96,8 @@ export function PhoneBar() {
   }, []);
 
   const rest = s.state === 'rest';
-  const label = rest ? '本日は定休日です' : '電話で注文する';
+  // 閉店が近い時間は「注文」より「まだあるか」が用件になる
+  const label = rest ? '本日は定休日です' : ctaLabel(s);
 
   return (
     <motion.div className={`bar ${rest ? 'bar--rest' : ''}`}

@@ -1,11 +1,16 @@
 import { useEffect, useState } from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
-import { shopState, human, burnProgress, OPEN_H, CLOSE_H } from '../lib/now.js';
+import { shopState, human, burnProgress, stockNote, OPEN_H, CLOSE_H } from '../lib/now.js';
 import { SITE } from '../data/site.js';
 
 /**
  * このサイトが最初に答えるべきこと＝「今、やってる？」
- * 確認できている営業時間と定休日だけから組み立てる。在庫は言い切らない。
+ *
+ * ただしこの店は売切れ次第CLOSE なので、この問いは二段ある。
+ *   ① 営業時間か   … カレンダーと時計でわかる → ここで答える
+ *   ② 在庫があるか … 店しか知らない          → ここでは答えない
+ * ②を小さな注記で済ませると、21時に見た人が閉まった店に向かってしまう。
+ * だから②は①と同じ大きさで、電話を添えて置く。
  */
 export default function Now() {
   const [s, setS] = useState(() => shopState());
@@ -24,6 +29,7 @@ export default function Now() {
   const extra =
     state === 'before' ? `あと${human(s.countdown)}` :
     state === 'open' ? `のこり${human(s.remain)}` : '';
+  const stock = stockNote(s);
 
   return (
     <div className={`now now--${state}`}>
@@ -42,8 +48,8 @@ export default function Now() {
         </p>
       )}
 
-      {/* 17:00→22:00 の5時間。いまどこにいるかを一本の線で示す */}
-      <div className="burn" role="img" aria-label={`営業時間 ${OPEN_H}:00 から ${CLOSE_H}:00`}>
+      {/* 17:00→22:00 の5時間。これは「時間」の線で、在庫の残りではない */}
+      <div className="burn" role="img" aria-label={`営業時間は ${OPEN_H}:00 から ${CLOSE_H}:00 まで`}>
         <span className="burn__cap">{OPEN_H}:00</span>
         <span className="burn__bar">
           <motion.span
@@ -64,11 +70,17 @@ export default function Now() {
         <span className="burn__cap">{CLOSE_H}:00</span>
       </div>
 
-      <p className="now__fine">
-        売切れ次第CLOSE。在庫は
-        <a href={SITE.instagram} target="_blank" rel="noopener noreferrer">Instagram</a>
-        かお電話で。
-      </p>
+      {stock ? (
+        <div className={`stock ${state === 'open' && s.last ? 'stock--last' : ''}`}>
+          <p className="stock__k">在庫</p>
+          <p className="stock__b">
+            {stock}
+            <a className="stock__ig" href={SITE.instagram} target="_blank" rel="noopener noreferrer">
+              Instagramでも告知
+            </a>
+          </p>
+        </div>
+      ) : null}
     </div>
   );
 }
