@@ -3,7 +3,24 @@
    燻製塩焼鳥 けむり
    店名が「けむり」なので、煙そのものを主役にする。
    写真を使わず、文字・縦組み・煙・熾火だけで組み立てる。
+
+   見出しは Kaisei Tokumin（解星 篤ミン）。
+   墨の乗った看板文字の質感が、この店の無骨さに合う。
+   サイトで使う394文字だけに絞って同梱（1.1MB → 159KB）。
+   詳細は src/assets/fonts/NOTICE.md
    ============================================================ */
+
+/* 先に出し、描画開始に間に合わせる。読めない時間は作らない（swap） */
+@font-face{
+  font-family:"Kaisei Tokumin";
+  src:url("../assets/fonts/kaisei-tokumin-500.subset.woff2") format("woff2");
+  font-weight:500;font-style:normal;font-display:swap;
+}
+@font-face{
+  font-family:"Kaisei Tokumin";
+  src:url("../assets/fonts/kaisei-tokumin-700.subset.woff2") format("woff2");
+  font-weight:700;font-style:normal;font-display:swap;
+}
 
 :root{
   --sumi:#0A0C0E;        /* 夜 */
@@ -25,7 +42,7 @@
   --tx-54:rgba(10,12,14,.64);
   --rule:rgba(10,12,14,.16);
 
-  --min:"Hiragino Mincho ProN","Yu Mincho",YuMincho,"Noto Serif JP",serif;
+  --min:"Kaisei Tokumin","Hiragino Mincho ProN","Yu Mincho",YuMincho,serif;
   --got:"Hiragino Sans","Yu Gothic",YuGothic,"Noto Sans JP",system-ui,-apple-system,sans-serif;
 
   --hd:56px;
@@ -62,8 +79,8 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:11.5px;letter-spacing:.3em;
   color:var(--okibi);margin-bottom:14px}
 .eyebrow::before{content:"";width:18px;height:1px;background:var(--okibi)}
-.h2{font-family:var(--min);font-weight:500;font-size:clamp(26px,6.4vw,46px);line-height:1.45;
-  letter-spacing:.04em;text-wrap:balance}
+.h2{font-family:var(--min);font-weight:700;font-size:clamp(25px,6.1vw,44px);line-height:1.5;
+  letter-spacing:.015em;text-wrap:balance}
 .h2--ink{color:var(--tx)}
 
 .mask{display:block;overflow:hidden;padding-bottom:.14em;margin-bottom:-.14em}
@@ -104,7 +121,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
   border-bottom:1px solid rgba(237,231,218,.1)}
 .hd__brand{display:flex;align-items:center;gap:9px;text-decoration:none;flex:0 0 auto}
 .hd__brand img{width:30px;height:30px}
-.hd__name{font-family:var(--min);font-size:18px;letter-spacing:.16em}
+.hd__name{font-family:var(--min);font-weight:700;font-size:18px;letter-spacing:.1em}
 .hd__nav{display:none;margin-left:auto;gap:clamp(12px,2vw,28px)}
 .hd__nav a{font-size:12.5px;letter-spacing:.06em;text-decoration:none;color:var(--on-d-74);
   padding-block:14px;white-space:nowrap}
@@ -146,11 +163,12 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
   50%{opacity:1;transform:translateX(-50%) scaleY(1.12)}}
 .hero__in{position:relative;z-index:2;width:100%;display:grid;gap:clamp(30px,5vw,56px);
   padding-block:clamp(40px,7vw,72px);align-items:center}
-.hero__sub{font-family:var(--min);font-size:clamp(14px,3.4vw,17px);letter-spacing:.3em;color:var(--on-d-74)}
-.hero__name{font-family:var(--min);font-weight:600;font-size:clamp(68px,19vw,132px);
-  line-height:.95;letter-spacing:.04em;margin:10px 0 0}
-.hero__lead{font-family:var(--min);font-size:clamp(16px,4.3vw,22px);line-height:1.85;
-  letter-spacing:.07em;margin-top:22px;color:var(--on-d-74)}
+.hero__sub{font-family:var(--min);font-weight:500;font-size:clamp(13px,3.2vw,16px);
+  letter-spacing:.34em;color:var(--on-d-74)}
+.hero__name{font-family:var(--min);font-weight:700;font-size:clamp(66px,18.5vw,128px);
+  line-height:.98;letter-spacing:.015em;margin:10px 0 0}
+.hero__lead{font-family:var(--min);font-weight:500;font-size:clamp(16px,4.2vw,21px);line-height:1.9;
+  letter-spacing:.04em;margin-top:24px;color:var(--on-d-74)}
 .hero__now .tel{width:min(100%,360px);margin-top:20px}
 .hero__dm{margin-top:12px;font-size:12.5px;color:var(--on-d-54)}
 .hero__noren{display:none}
@@ -167,8 +185,8 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
   background:rgba(10,12,14,.5);backdrop-filter:blur(6px)}
 .now__date{font-size:12.5px;letter-spacing:.14em;color:var(--on-d-54)}
 .now__dateNum{font-variant-numeric:tabular-nums}
-.now__label{display:flex;align-items:center;gap:10px;margin-top:8px;
-  font-family:var(--min);font-size:clamp(19px,4.8vw,25px);letter-spacing:.05em}
+.now__label{display:flex;align-items:center;gap:10px;margin-top:8px;font-weight:700;
+  font-family:var(--min);font-size:clamp(19px,4.7vw,24px);letter-spacing:.02em}
 .now__dot{width:9px;height:9px;border-radius:50%;flex:0 0 auto;background:var(--on-d-54)}
 .now--open .now__dot{background:var(--okibi);box-shadow:0 0 0 0 rgba(240,160,60,.5);
   animation:pulse 2.6s ease-out infinite}
@@ -183,7 +201,8 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 
 /* 五時間の線 */
 .burn{display:flex;align-items:center;gap:10px;margin-top:16px}
-.burn__cap{font-size:10.5px;letter-spacing:.1em;color:var(--on-d-54);font-variant-numeric:tabular-nums}
+.burn__cap{font-family:var(--min);font-weight:700;font-size:11.5px;letter-spacing:.06em;
+  color:var(--on-d-54);font-variant-numeric:tabular-nums}
 .burn__bar{position:relative;flex:1;height:2px;background:rgba(237,231,218,.16);border-radius:2px}
 .burn__fill{position:absolute;inset:0;transform-origin:left;border-radius:2px;
   background:linear-gradient(90deg,var(--hi),var(--okibi))}
@@ -197,8 +216,9 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .points__i{display:grid;grid-template-columns:auto 1fr;gap:4px 20px;align-items:baseline;
   padding-block:22px;border-bottom:1px solid var(--rule-d)}
 .points__k{grid-row:1 / span 2;display:grid;place-items:center;width:46px;height:46px;
-  border:1px solid var(--okibi);color:var(--okibi);font-family:var(--min);font-size:20px;align-self:center}
-.points__t{font-family:var(--min);font-weight:500;font-size:19px;letter-spacing:.08em}
+  border:1px solid var(--okibi);color:var(--okibi);font-family:var(--min);font-weight:700;
+  font-size:21px;align-self:center}
+.points__t{font-family:var(--min);font-weight:700;font-size:19px;letter-spacing:.04em}
 .points__b{font-size:13.5px;line-height:1.85;color:var(--on-d-74)}
 @media (min-width:860px){
   .points{grid-template-columns:repeat(3,1fr);gap:0 36px;border-top:0}
@@ -219,7 +239,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
   border-radius:2px 2px 10px 10px;
   background:linear-gradient(180deg,rgba(237,231,218,.07),rgba(237,231,218,.02));
   transition:border-color .25s ease,background-color .25s ease,transform .25s ease}
-.fuda__t{font-family:var(--min);font-size:clamp(16px,4.2vw,19px);letter-spacing:.06em}
+.fuda__t{font-family:var(--min);font-weight:700;font-size:clamp(16px,4.2vw,19px);letter-spacing:.02em}
 .fuda__t .tate__c{line-height:1.45}
 @media (hover:hover){.fuda__i:hover{border-color:var(--okibi);transform:translateY(-3px);
   background:linear-gradient(180deg,rgba(240,160,60,.14),rgba(240,160,60,.03))}}
@@ -235,8 +255,8 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .steps{margin-top:clamp(28px,5vw,48px);border-top:1px solid var(--rule)}
 .steps__i{display:grid;grid-template-columns:auto 1fr;gap:20px;align-items:baseline;
   padding-block:20px;border-bottom:1px solid var(--rule)}
-.steps__n{font-family:var(--min);font-size:22px;color:var(--hi-d);line-height:1}
-.steps__t{font-family:var(--min);font-weight:500;font-size:clamp(17px,4.2vw,20px);letter-spacing:.06em}
+.steps__n{font-family:var(--min);font-weight:700;font-size:23px;color:var(--hi-d);line-height:1}
+.steps__t{font-family:var(--min);font-weight:700;font-size:clamp(17px,4.2vw,20px);letter-spacing:.03em}
 .steps__b{margin-top:4px;font-size:13.5px;color:var(--tx-54);font-variant-numeric:tabular-nums}
 .howto__cta{margin-top:clamp(26px,4vw,38px);display:flex;flex-wrap:wrap;align-items:center;gap:18px 28px}
 .howto__cta .tel{width:min(100%,340px)}
@@ -257,7 +277,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .store__acts{margin-top:22px;display:flex;flex-wrap:wrap;gap:12px}
 .store__plan{color:var(--on-d);opacity:.9}
 .store__plan svg{width:100%;height:auto}
-.plan__t{font-family:var(--min);font-size:19px;fill:currentColor;letter-spacing:.1em}
+.plan__t{font-family:var(--min);font-weight:700;font-size:19px;fill:currentColor;letter-spacing:.06em}
 .plan__s{font-size:10px;fill:currentColor;fill-opacity:.62;letter-spacing:.12em}
 @media (min-width:860px){.store__in{grid-template-columns:1.1fr .9fr}}
 
@@ -268,8 +288,8 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
   border-top:1px solid var(--rule-d)}
 .closing__in{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center}
 .closing__logo{width:58px;height:58px;margin-bottom:24px}
-.closing__h{font-family:var(--min);font-weight:600;font-size:clamp(27px,7.4vw,48px);
-  line-height:1.4;letter-spacing:.06em}
+.closing__h{font-family:var(--min);font-weight:700;font-size:clamp(26px,7.2vw,46px);
+  line-height:1.45;letter-spacing:.02em}
 .closing__cta{margin-top:30px;width:min(100%,340px)}
 .closing__cta .tel{width:100%}
 .closing__hours{margin-top:20px;font-size:12.5px;color:var(--on-d-54);font-variant-numeric:tabular-nums}
@@ -278,7 +298,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .ft{background:var(--sumi);border-top:1px solid var(--rule-d);
   padding:clamp(30px,4vw,44px) 0 calc(clamp(30px,4vw,44px) + var(--bar))}
 .ft__in{display:grid;gap:18px}
-.ft__name{font-family:var(--min);font-size:19px;letter-spacing:.16em}
+.ft__name{font-family:var(--min);font-weight:700;font-size:19px;letter-spacing:.1em}
 .ft__name span{display:block;font-family:var(--got);font-size:9px;letter-spacing:.24em;
   color:var(--on-d-54);margin-bottom:5px}
 .ft__meta{font-size:13px;line-height:1.95;color:var(--on-d-74);font-variant-numeric:tabular-nums}
